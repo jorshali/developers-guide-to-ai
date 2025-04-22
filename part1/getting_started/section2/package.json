@@ -1,0 +1,18 @@
+{
+  "name": "ai-for-developers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server-part1.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@langchain/ollama": "^0.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "langchain": "^0.3.15"
+  }
+}
