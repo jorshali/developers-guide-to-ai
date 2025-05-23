@@ -9,7 +9,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const chatModel = new ChatOllama({
-  model: 'llama3.2'
+  model: 'llama3.2',
+  temperature: 0
 });
 
 app.post('/', async (request, response) => {

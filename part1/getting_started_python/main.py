@@ -1,12 +1,9 @@
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
+from ollama import Client
 
-from langchain_ollama.llms import OllamaLLM
 from pydantic import BaseModel
-
-class ChatRequest(BaseModel):
-    question: str
 
 app = FastAPI()
 
@@ -18,10 +15,26 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-chatModel = OllamaLLM(model='llama3.2')
+client = Client()
+
+class ChatRequest(BaseModel):
+    question: str
 
 @app.post("/")
-def read_root(chatRequest: ChatRequest):
-    stream = chatModel.stream(chatRequest.question)
+def chat(chatRequest: ChatRequest):
+    def generate_stream():
+        result = client.generate(
+            stream=True,
+            model="llama3.2",
+            prompt=chatRequest.question,
+            options={
+                "temperature": 0.2,
+                "top_p": 0.9
+            }
+        )
 
-    return StreamingResponse(stream, media_type="text/plain")
+        for chunk in result:
+            if chunk.get('response'):
+                yield chunk['response']
+
+    return StreamingResponse(generate_stream(), media_type="text/plain")

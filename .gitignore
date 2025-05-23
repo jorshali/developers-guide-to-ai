@@ -8,6 +8,7 @@ coverage
 
 # production
 build
+chroma_db
 
 # misc
 .DS_Store

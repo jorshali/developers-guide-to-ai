@@ -1,0 +1,12 @@
+fastapi>=0.104.0
+uvicorn>=0.24.0
+langchain>=0.1.0
+langchain-community>=0.0.10
+langchain-core>=0.1.10
+langchain-ollama>=0.0.1
+langchain-text-splitters>=0.0.1
+chromadb>=0.4.22
+pydantic>=2.5.0
+typing-extensions>=4.8.0 
+rank_bm25
+beautifulsoup4

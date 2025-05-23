@@ -1,0 +1,1 @@
+curl --header "Content-Type: application/json" --request POST --data '{"comment":"I am an @Acme Corp repeat customer.  They ship fast!"}' http://localhost:8000

@@ -1,0 +1,7 @@
+fastapi[standard]
+langchain
+chromadb>=0.4.22
+langchain-ollama
+langchain-chroma
+langchain-openai
+langchain_community

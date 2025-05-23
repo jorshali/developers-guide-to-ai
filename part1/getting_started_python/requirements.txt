@@ -1,3 +1,2 @@
 fastapi[standard]
-langchain
-langchain-ollama
+ollama

@@ -1,3 +1,0 @@
-chromadb
-sentence-transformers
-pandas
