@@ -6,19 +6,18 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 const chatModel = new ChatOllama({
   model: 'llama3.2',
-  temperature: 0
+  streaming: true
 });
 
 app.post('/', async (request, response) => {
-  const { question } = request.body;
+  const body = request.body;
 
-  const stream = await chatModel.stream(question);
+  const streamIterator = await chatModel.stream(body.question);
 
-  for await (const chunk of stream) {
+  for await (const chunk of streamIterator) {
     response.write(chunk.content);
   }
 
