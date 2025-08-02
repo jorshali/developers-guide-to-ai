@@ -11,6 +11,7 @@ build
 chroma_db
 
 # misc
+__pycache__
 .DS_Store
 .env.local
 .env.development.local
