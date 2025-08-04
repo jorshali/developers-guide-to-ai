@@ -26,11 +26,7 @@ def chat(chatRequest: ChatRequest):
         result = client.generate(
             stream=True,
             model="llama3.2",
-            prompt=chatRequest.question,
-            options={
-                "temperature": 0.2,
-                "top_p": 0.9
-            }
+            prompt=chatRequest.question
         )
 
         for chunk in result:
