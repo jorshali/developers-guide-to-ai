@@ -48,34 +48,34 @@ The following steps will get you up and running on your machine.
 
 3. Install node modules
 
-- Navigate to the project `part0/getting_started/section2` directory in your terminal and run:
+- Navigate to the project `part1/getting_started/section2` directory in your terminal and run:
 
 ```
-~/ai-for-developers/part0/getting_started/section2 % npm install
+~/developers-guide-to-ai/part1/getting_started/section2 % npm install
 ```
 
-- Navigate to the project `part0/getting_started/client` directory in your terminal and run:
+- Navigate to the project `part1/client` directory in your terminal and run:
 
 ```
-~/ai-for-developers/part0/client % npm install
+~/developers-guide-to-ai/part1/client % npm install
 ```
 
 4.  Launch the server
 
-- In a terminal, navigate to the `part0/getting_started/section2` directory and run the following command:
+- In a terminal, navigate to the `part1/getting_started/section2` directory and run the following command:
 
 ```
-~/ai-for-developers/part0/getting_started/section2 % node server.mjs
+~/developers-guide-to-ai/part1/getting_started/section2 % node server.mjs
 ```
 
 5.  Launch the client
 
-- In a separate terminal, navigate to the `part0/client` directory and run the following commands:
+- In a separate terminal, navigate to the `part1/client` directory and run the following commands:
 
 ```
-~/ai-for-developers/part0/client % npm run dev
+~/developers-guide-to-ai/part1/client % npm run dev
 ```
 
 6. Open your web browser and visit: http://localhost:5173
 
-7. Input a question and click `Call your API` to see the response streamed from Llama 3.2
+7. Input a question and click `Call your API` to see the response streamed from Llama 3.2 3b

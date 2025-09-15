@@ -1,6 +1,6 @@
 fastapi[standard]
 langchain
 langchain-ollama
-langchain_community
+langchain-community
 chromadb
 transformers

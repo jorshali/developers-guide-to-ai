@@ -31,7 +31,7 @@ Once you have set up the virtual environment and installed the required packages
 For example, to set up the virtual environment and start the Jupyter notebook server, you can use the following commands:
 
 ```bash
-pyenv virtualenv 3.12.0 part4
-pyenv activate part4
+pyenv virtualenv 3.12.0 developers-guide-to-ai-part4
+pyenv activate developers-guide-to-ai-part4
 ```
 

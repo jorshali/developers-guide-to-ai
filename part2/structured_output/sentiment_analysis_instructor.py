@@ -1,27 +1,14 @@
 import logging
 import instructor
 
-from typing import Optional
+from typing import Literal
 from openai import OpenAI
 
 from pydantic import BaseModel
-from enum import Enum
 from pydantic import BaseModel, Field
 
 # Set logging to DEBUG
 logging.basicConfig(level=logging.DEBUG)
-
-class Sentiment(Enum):
-  POSITIVE = "positive"
-  NEUTRAL = "neutral"
-  NEGATIVE = "negative"
-
-class Department(Enum):
-  CUSTOMER_SUPPORT = "customer_support"
-  ONLINE_ORDERING = "online_ordering"
-  PRODUCT_QUALITY = "product_quality"
-  SHIPPING_AND_DELIVERY = "shipping_and_delivery"
-  OTHER_OFF_TOPIC = "other_off_topic"
 
 class SocialMessage(BaseModel):
   """Use the following information to determine the department to route to:
@@ -39,8 +26,8 @@ The reply your write:
 """
 
   statement: str = Field(description="The statement being analyzed")
-  sentiment: Sentiment = Field(description="Provide the sentiment of the statement")
-  department: Department = Field(description="Department the statement should be routed to")
+  sentiment: Literal['positive', 'negative', 'neutral'] = Field(description="Provide the sentiment of the statement")
+  department: Literal['customer_support', 'online_ordering', 'product_quality', 'shipping_and_delivery', 'other_off_topic'] = Field(description="Department the statement should be routed to")
   reply: str = Field(description="Recommend a reply to the statement")
 
 client = instructor.from_openai(

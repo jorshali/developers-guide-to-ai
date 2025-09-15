@@ -39,13 +39,13 @@ The following steps will get you up and running on your machine.
 - Navigate to the project `part0/simple_rag_python` directory in your terminal and run:
 
 ```
-~/ai-for-developers/part0/simple_rag_python % pip install -r requirements.txt
+~/developers-guide-to-ai/part0/simple_rag_python % pip install -r requirements.txt
 ```
 
 - Navigate to the project `part0/client` directory in your terminal and run:
 
 ```
-~/ai-for-developers/part0/client % npm install
+~/developers-guide-to-ai/part0/client % npm install
 ```
 
 4.  Launch the server
@@ -53,7 +53,7 @@ The following steps will get you up and running on your machine.
 - In a terminal, navigate to the `part0/simple_rag_python` directory and run the following command:
 
 ```
-~/ai-for-developers/part0/getting_started_python % fastapi dev main.py
+~/developers-guide-to-ai/part0/getting_started_python % fastapi dev main.py
 ```
 
 5.  Launch the client
@@ -61,7 +61,7 @@ The following steps will get you up and running on your machine.
 - In a separate terminal, navigate to the `part0/client` directory and run the following commands:
 
 ```
-~/ai-for-developers/part0/client % npm run dev
+~/developers-guide-to-ai/part0/client % npm run dev
 ```
 
 6. Open your web browser and visit: http://localhost:5173

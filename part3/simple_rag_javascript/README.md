@@ -51,7 +51,7 @@ The following steps will get you up and running on your machine.
 - Navigate to the project `part0/simple_rag` directory in your terminal and run:
 
 ```
-~/ai-for-developers/part0/simple_rag % npm install
+~/developers-guide-to-ai/part0/simple_rag % npm install
 ```
 
 4.  Launch the server
@@ -59,7 +59,7 @@ The following steps will get you up and running on your machine.
 - Back in the terminal, run the following commands:
 
 ```
-~/ai-for-developers/part0/simple_rag % node server.mjs
+~/developers-guide-to-ai/part0/simple_rag % node server.mjs
 ```
 
 5.  Launch the client
@@ -67,7 +67,7 @@ The following steps will get you up and running on your machine.
 - In a terminal, navigate to the `part0/getting_started/client` directory and run the following commands:
 
 ```
-~/ai-for-developers/client % npm run dev
+~/developers-guide-to-ai/client % npm run dev
 ```
 
 6. Open your web browser and visit: http://localhost:5173
