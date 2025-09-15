@@ -20,7 +20,7 @@ import {
 import { StringOutputParser } from "@langchain/core/output_parsers";
 
 const loader = new DirectoryLoader(
-  "../articles",
+  "articles",
   {
     ".md": (path) => new TextLoader(path)
   }

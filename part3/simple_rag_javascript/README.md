@@ -1,6 +1,6 @@
 # The Developer's Guide to AI: From Prompts to Agents
 
-## Getting Started - Part 3: Create a RAG solution
+## Create a simple RAG solution using JavaScript
 
 Most LLM-powered applications use RAG in some way.
 
@@ -48,10 +48,10 @@ The following steps will get you up and running on your machine.
 
 3. Install node modules
 
-- Navigate to the project `part0/simple_rag` directory in your terminal and run:
+- Navigate to the project `part3/simple_rag_javascript` directory in your terminal and run:
 
 ```
-~/developers-guide-to-ai/part0/simple_rag % npm install
+~/developers-guide-to-ai/part3/simple_rag_javascript % npm install
 ```
 
 4.  Launch the server
@@ -59,12 +59,12 @@ The following steps will get you up and running on your machine.
 - Back in the terminal, run the following commands:
 
 ```
-~/developers-guide-to-ai/part0/simple_rag % node server.mjs
+~/developers-guide-to-ai/part3/simple_rag_javascript % node server.mjs
 ```
 
 5.  Launch the client
 
-- In a terminal, navigate to the `part0/getting_started/client` directory and run the following commands:
+- In a terminal, navigate to the `part1/client` directory and run the following commands:
 
 ```
 ~/developers-guide-to-ai/client % npm run dev
