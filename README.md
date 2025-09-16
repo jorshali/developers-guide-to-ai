@@ -25,6 +25,7 @@ If your issue results in a change to the book text, a change to the examples, or
 # Table of Contents
 
 - [About the Book](#about-the-book)
+- [Pre-trained AI Models](#pre-trained-ai-models)
 - [Prerequisites](#prerequisites)
 - [About This README](#about-this-readme)
 - [Project Structure](#project-structure)
@@ -180,12 +181,12 @@ Follow the instructions found here to setup `pyenv` for your environment:
 
 [Install pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv?tab=readme-ov-file#installation)
 
-## Install Python version 3.13.5
+## Install Python version 3.12.11
 
 The following command installs the necessary Python version using `pyenv`:
 
 ```
-pyenv install 3.13.5
+pyenv install 3.12.11
 ```
 
 ## Virtual Environment Setup
@@ -193,7 +194,7 @@ pyenv install 3.13.5
 Setup your virtual environment with the installed Python version:
 
 ```
-$ pyenv virtualenv 3.13.5 developers-guide-to-ai-part1
+$ pyenv virtualenv 3.12.11 developers-guide-to-ai-part1
 ```
 
 Each part of the book has a specific set of dependencies for its examples defined in a `requirements.txt` file.  When you get to a new part, you can create a specific environment by running the command above and simply changing the `part` number.
