@@ -55,5 +55,3 @@ response = analyze_sentiment("The App crashes every time I try to view my health
 
 print(f"Sentiment: {response.sentiment}")
 print(f"Reply: {response.reply}")
-
-print(json.dumps(SocialMessage.model_json_schema(), indent=2))
