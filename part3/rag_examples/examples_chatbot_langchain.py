@@ -5,7 +5,6 @@ from langchain_community.document_loaders import TextLoader
 from langchain.prompts import ChatPromptTemplate
 from langchain_ollama import OllamaLLM
 from langchain_core.output_parsers import StrOutputParser
-import json
 
 print("\nLoading the README file, please wait just a moment...\n")
 

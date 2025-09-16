@@ -6,7 +6,6 @@ from langchain.prompts import ChatPromptTemplate
 from langchain_ollama import OllamaLLM
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda, RunnableMap
 from langchain_core.output_parsers import StrOutputParser
-import json
 
 print("\nLoading the README file, please wait just a moment...\n")
 
@@ -16,9 +15,9 @@ print("Number of documents: ", len(documentation_as_documents))
 print(documentation_as_documents[0].model_dump_json(indent=2))
 
 headers_to_split_on = [
-    ("#", "Header 1"),
-    ("##", "Header 2"),
-    ("###", "Header 3"),
+  ("#", "Header 1"),
+  ("##", "Header 2"),
+  ("###", "Header 3"),
 ]
 
 splitter = MarkdownHeaderTextSplitter(headers_to_split_on=headers_to_split_on)
@@ -30,14 +29,14 @@ print("Number of chunks: ", len(document_chunks))
 
 # Initialize embeddings and vector store
 embeddings = OllamaEmbeddings(
-    model="mxbai-embed-large",
-    base_url="http://localhost:11434",
+  model="mxbai-embed-large",
+  base_url="http://localhost:11434",
 )
 
 vector_db = Chroma.from_documents(
-    documents=document_chunks,
-    embedding=embeddings,
-    collection_name="documentation_collection"
+  documents=document_chunks,
+  embedding=embeddings,
+  collection_name="documentation_collection"
 )
 
 llm = OllamaLLM(
@@ -65,7 +64,7 @@ context = RunnableMap({
 
 parser = StrOutputParser()
 
-chain = context |prompt | llm | parser
+chain = context | prompt | llm | parser
 
 response = chain.stream(question)
 
