@@ -1,0 +1,7 @@
+fastapi[standard]
+langchain
+langchain-ollama
+langchain-community
+ollama
+openai
+tiktoken
