@@ -3,5 +3,8 @@ langchain-community>=0.0.10
 chromadb>=0.4.22
 beautifulsoup4>=4.12.0
 requests>=2.31.0
+langchain-chroma
 langchain-ollama
+numpy<2
 pandas
+sentence-transformers>=5.1.0

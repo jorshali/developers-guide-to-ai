@@ -48,6 +48,10 @@ Instead of drowning you in theory, this book gives you:
 
 We focus on practical applications using pre-trained AI models (LLMs and more) through accessible APIs and SDKs, allowing you to build AI-powered applications in the languages you already know.
 
+# Pre-trained AI Models
+
+The concepts and practical approaches presented in the Developer's Guide to AI are generally AI model agnostic, but we will be calling Ollama models in many of the examples.  Ollama provides a local API to open models that will only cost you the power required to power your laptop.  While some examples show how you can connect to hosted models (e.g. OpenAI APIs), keep in mind that to use these models you will need to register for an API key and pay for usage.
+
 # Prerequisites
 
 - Basic knowledge of JavaScript
@@ -93,6 +97,7 @@ The project is organized into parts. Each part corresponds to a part with in boo
 # Parts Overview
 
 ## Part 1: Getting Started with AI
+
 This part provides the foundation for working with AI, featuring both JavaScript and Python implementations.
 
 | Project | Description |
@@ -104,6 +109,7 @@ This part provides the foundation for working with AI, featuring both JavaScript
 ---
 
 ## Part 2: Prompt Engineering
+
 This part dives deeper into LLM capabilities with practical examples of prompt engineering techniques.
 
 | Project | Description |
@@ -116,6 +122,7 @@ This part dives deeper into LLM capabilities with practical examples of prompt e
 ---
 
 ## Part 3: Vector Databases and RAG
+
 This part focuses on building advanced AI applications using Retrieval-Augmented Generation (RAG) and vector databases.
 
 | Project | Description |
@@ -132,6 +139,7 @@ This part focuses on building advanced AI applications using Retrieval-Augmented
 ---
 
 ## Part 4: Fine-tuning
+
 This part provides a comprehensive guide to fine-tuning models for specific tasks. It covers the entire lifecycle, from data preparation to model evaluation.
 
 | Project | Description |
@@ -149,6 +157,7 @@ This part provides a comprehensive guide to fine-tuning models for specific task
 ---
 
 ## Part 5: Agents
+
 This part explores the concept of AI agents, which can use tools to interact with their environment and solve complex tasks.
 
 | Project | Description |
