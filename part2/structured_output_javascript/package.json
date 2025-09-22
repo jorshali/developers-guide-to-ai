@@ -1,0 +1,14 @@
+{
+  "name": "structured-output-javascript",
+  "version": "1.0.0",
+  "description": "Data extraction using Instructor.js and Zod",
+  "type": "module",
+  "main": "data_extraction_instructor.js",
+  "dependencies": {
+    "openai": "5.22.0",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.24.6"
+  },
+  "author": "",
+  "license": "MIT"
+}
