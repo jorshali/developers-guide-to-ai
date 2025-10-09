@@ -71,7 +71,7 @@ async def lifespan(app: FastAPI):
     # initialize models and vector stores
     chat_context.retriever = load_vector_store()
     # chat_context.model = OllamaLLM(model='llama3.2')
-    chat_context.model = OpenAI(model="gpt-4o-mini")
+    chat_context.model = OllamaLLM(model='llama3.2')
     
     yield
 
