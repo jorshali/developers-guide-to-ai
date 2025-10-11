@@ -1,24 +1,23 @@
 import express from "express";
 import { ChatOllama } from "@langchain/ollama";
-import cors from 'cors';
 
 const app = express();
-
-app.use(cors());
 
 const model = new ChatOllama({
   model: 'llama3.2'
 });
 
-app.get('/', async (req, res) => {
-  const response = 
+app.get('/', async (request, response) => {
+  response.type('text/plain');
+
+  const modelResponse = 
     await model.invoke(
       "Can you simply say 'test'?");
 
   console.log("\nAIMessage object response:\n")
-  console.log(response);
+  console.log(modelResponse);
 
-  res.send(response.content);
+  response.send(modelResponse.content);
 });
 
 app.listen(8000, () => {

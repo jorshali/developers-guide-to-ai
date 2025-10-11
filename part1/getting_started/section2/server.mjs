@@ -13,6 +13,8 @@ const chatModel = new ChatOllama({
 });
 
 app.post('/', async (request, response) => {
+  response.type('text/plain');
+
   const body = request.body;
 
   const streamIterator = await chatModel.stream(body.question);
