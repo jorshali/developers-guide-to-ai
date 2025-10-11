@@ -8,8 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 const chatModel = new ChatOllama({
-  model: 'llama3.2',
-  streaming: true
+  model: 'llama3.2'
 });
 
 app.post('/', async (request, response) => {
