@@ -15,6 +15,9 @@ app.get('/', async (req, res) => {
     await model.invoke(
       "Can you simply say 'test'?");
 
+  console.log("\nAIMessage object response:\n")
+  console.log(response);
+
   res.send(response.content);
 });
 

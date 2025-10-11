@@ -61,5 +61,5 @@ The following steps will get you up and running on your machine.
 ~/developers-guide-to-ai/part1/getting_started/section1 % node server.mjs
 ```
 
-- Open your web browser and visit: http://localhost:3000
+- Open your web browser and visit: http://localhost:8000
 - You’ll see the response from the Llama model:  test
