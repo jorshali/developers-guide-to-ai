@@ -8,29 +8,32 @@ from pydantic import BaseModel
 app = FastAPI()
 
 app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+  CORSMiddleware,
+  allow_origins=["*"],
+  allow_credentials=True,
+  allow_methods=["*"],
+  allow_headers=["*"],
 )
 
 client = Client()
 
+
 class ChatRequest(BaseModel):
-    question: str
+  question: str
+
+
+def generate_stream(question: str):
+  result = client.generate(stream=True, model="llama3.2", prompt=question)
+
+  for chunk in result:
+    if chunk.response:
+      print('\nReturned GenerateResponse object for chunk:\n')
+      print(chunk.model_dump_json(indent=2))
+
+      yield chunk.response
+
 
 @app.post("/")
 def chat(chatRequest: ChatRequest):
-    def generate_stream():
-        result = client.generate(
-            stream=True,
-            model="llama3.2",
-            prompt=chatRequest.question
-        )
-
-        for chunk in result:
-            if chunk.get('response'):
-                yield chunk['response']
-
-    return StreamingResponse(generate_stream(), media_type="text/plain")
+  return StreamingResponse(
+    generate_stream(chatRequest.question), media_type="text/plain")

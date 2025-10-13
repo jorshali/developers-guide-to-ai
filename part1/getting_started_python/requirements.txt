@@ -1,2 +1,2 @@
-fastapi[standard]
-ollama
+fastapi[standard]>=0.119.0
+ollama>=0.6.0
