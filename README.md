@@ -56,8 +56,8 @@ The concepts and practical approaches presented in the Developer's Guide to AI a
 # Prerequisites
 
 - Basic knowledge of JavaScript
-- [Node.js](https://nodejs.org/)
-- [Python](https://www.python.org/)
+- [Node.js](https://nodejs.org/) (Version 24.8.0)
+- [Python](https://www.python.org/) (Version 3.12)
 - [Git](https://git-scm.com/)
 
 Recommended:
