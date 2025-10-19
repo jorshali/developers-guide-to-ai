@@ -13,9 +13,9 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "@langchain/ollama": "^0.2.4",
+    "@langchain/ollama": "^1.0.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "langchain": "^0.3.35"
+    "langchain": "^1.0.1"
   }
 }
