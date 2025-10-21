@@ -98,7 +98,7 @@ def chat(chat_request: ChatRequest):
     message_history.append((msg.role, msg.content))
 
   messages = [
-    ("system", "You are a helpful assistant and will answer questions about the Developer's Guide to AI.  Only use the provided documentation to answer.  If you don't know the answer, say so."),
+    ("system", "You are a helpful assistant and will answer questions about the Developer's Guide to AI.  Only use the provided documentation to answer. only respond with 'Sorry, I am unable to help with that, but I cananswer questions about the example documentation"),
     MessagesPlaceholder(variable_name="history"),
     ("human", "<documentation>{documentation}</documentation>\n\nQuestion: {question}")
   ]
