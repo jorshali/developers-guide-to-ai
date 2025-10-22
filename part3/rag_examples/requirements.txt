@@ -2,5 +2,5 @@ langchain==0.3.27
 langchain-ollama==0.3.10
 langchain-community==0.3.31
 langchain-chroma==0.2.6
-chromadb
-transformers
+chromadb==1.2.1
+beautifulsoup4==4.14.2

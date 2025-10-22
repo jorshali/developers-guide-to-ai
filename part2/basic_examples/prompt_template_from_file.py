@@ -1,4 +1,9 @@
-from jinja2 import Template
+from jinja2 import Environment, FileSystemLoader, select_autoescape
+
+env = Environment(
+  loader=FileSystemLoader(searchpath="templates"),
+  autoescape=select_autoescape()
+)
 
 article = '''To reset your password, follow these simple steps:
 
@@ -18,18 +23,7 @@ spam folder or contact our support team.
 For security reasons, your old password will be immediately invalidated 
 once you create a new one.'''
 
-prompt_template: Template = Template("""
-You are a helpful Help Desk Representative. Use the following 
-support article to answer questions.  Only use the provided 
-<articles> and if an answer can't be found, respond with:  
-I'm sorry I can't help with that.  Please call customer 
-support at 555-555-1234.
-  
-<article>
-{{article}}
-</article>
-
-Question: {{question}}""")
+prompt_template = env.get_template("help_desk_representative_template.txt")
 
 question = "I'm having password issues.  Can you help me login?"
 

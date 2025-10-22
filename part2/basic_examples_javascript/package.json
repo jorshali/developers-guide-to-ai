@@ -9,11 +9,6 @@
   "author": "Jacob Orshalick",
   "license": "ISC",
   "dependencies": {
-    "@langchain/ollama": "^0.2.0",
-    "cors": "^2.8.5",
-    "express": "^4.21.2",
-    "hnswlib-node": "^3.0.0",
-    "langchain": "^0.3.15",
     "tiktoken": "^1.0.22"
   }
 }
