@@ -1,5 +1,5 @@
 from langchain.retrievers.multi_query import MultiQueryRetriever
-from langchain_openai import OpenAI
+from langchain_ollama.llms import OllamaLLM
 
 # Build a sample vectorDB
 from langchain_community.vectorstores import Chroma
@@ -11,7 +11,8 @@ from langchain_ollama.embeddings import OllamaEmbeddings
 import logging
 
 logging.basicConfig()
-logging.getLogger("langchain.retrievers.multi_query").setLevel(logging.INFO)
+logging.getLogger(
+    "langchain.retrievers.multi_query").setLevel(logging.INFO)
 
 url = "https://python.langchain.com/docs/how_to/structured_output/"
 # Load blog post
@@ -42,16 +43,18 @@ embeddings = OllamaEmbeddings(
     base_url="http://localhost:11434",
 )
 
-vectordb = Chroma.from_documents(collection_name="multi_query_retriever_example", documents=splits, embedding=embeddings, persist_directory="chroma_db/multi_query_retriever")
+vectordb = Chroma.from_documents(collection_name="multi_query_retriever_example", documents=splits,
+                                 embedding=embeddings, persist_directory="chroma_db/multi_query_retriever")
 
 print("VectorDB loaded")
 
-llm = OpenAI()
+llm = OllamaLLM(model="llama3.2")
 
 retriever_from_llm = MultiQueryRetriever.from_llm(
     retriever=vectordb.as_retriever(), llm=llm
 )
 
-results = retriever_from_llm.invoke("Can you tell me how to do structured JSON output?")
+results = retriever_from_llm.invoke(
+    "Can you tell me how to do structured JSON output?")
 
 print(len(results))

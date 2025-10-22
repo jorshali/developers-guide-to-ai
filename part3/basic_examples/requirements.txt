@@ -1,3 +1,1 @@
-langchain
-langchain-ollama
-langchain-community
+langchain-text-splitters==0.3.11

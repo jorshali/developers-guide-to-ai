@@ -18,18 +18,22 @@ from langchain_core.messages.utils import trim_messages
 
 from pydantic import BaseModel
 
+
 class Message(BaseModel):
   role: Literal["human", "ai"]
   content: str
+
 
 class ChatRequest(BaseModel):
   question: str
   history: List[Message] = []
 
+
 class ChatContext():
   def __init__(self):
     self.model: OllamaLLM = None
     self.retriever: ParentDocumentRetriever = None
+
 
 def load_vector_store():
   print("\nLoading the README file, please wait just a moment...\n")
@@ -43,12 +47,16 @@ def load_vector_store():
     ("#", "Header 1"),
     ("##", "Header 2"),
     ("###", "Header 3"),
+    ("####", "Header 4"),
+    ("#####", "Header 5"),
   ]
 
-  splitter = MarkdownHeaderTextSplitter(headers_to_split_on=headers_to_split_on)
+  splitter = MarkdownHeaderTextSplitter(
+    headers_to_split_on=headers_to_split_on)
 
   # Initialize the document loader
-  document_chunks = splitter.split_text(documentation_as_documents[0].page_content)
+  document_chunks = splitter.split_text(
+    documentation_as_documents[0].page_content)
 
   print("Number of chunks: ", len(document_chunks))
 
@@ -66,27 +74,30 @@ def load_vector_store():
 
   return vector_db
 
+
 chat_context = ChatContext()
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
   # initialize models and vector stores
   chat_context.retriever = load_vector_store()
   chat_context.model = OllamaLLM(model='llama3.2')
-  
+
   yield
 
   # Clean up and release the resources
-    
+
 app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
   CORSMiddleware,
-  allow_origins=[ "http://localhost:5173" ],
+  allow_origins=["http://localhost:5173"],
   allow_credentials=True,
   allow_methods=["*"],
   allow_headers=["*"],
 )
+
 
 @app.post("/")
 def chat(chat_request: ChatRequest):
@@ -100,7 +111,8 @@ def chat(chat_request: ChatRequest):
   messages = [
     ("system", "You are a helpful assistant and will answer questions about the Developer's Guide to AI.  Only use the provided documentation to answer.  If you don't know the answer, say so."),
     MessagesPlaceholder(variable_name="history"),
-    ("human", "<documentation>{documentation}</documentation>\n\nQuestion: {question}")
+    ("human",
+     "<documentation>{documentation}</documentation>\n\nQuestion: {question}")
   ]
 
   prompt = ChatPromptTemplate.from_messages(messages)

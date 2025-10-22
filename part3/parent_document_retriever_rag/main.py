@@ -3,7 +3,6 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
-from langchain_openai import OpenAI
 from langchain_ollama.llms import OllamaLLM
 from langchain_ollama.embeddings import OllamaEmbeddings
 from langchain_community.document_loaders import DirectoryLoader
@@ -19,117 +18,123 @@ from langchain_core.output_parsers import StrOutputParser
 from pydantic import BaseModel
 from typing import List, Literal
 
+
 class Message(BaseModel):
-    role: Literal["human", "ai"]
-    content: str
+  role: Literal["human", "ai"]
+  content: str
+
 
 class ChatRequest(BaseModel):
-    question: str
-    history: List[Message] = []
+  question: str
+  history: List[Message] = []
+
 
 class ChatContext():
-    def __init__(self):
-        self.model: OllamaLLM = None
-        self.retriever: ParentDocumentRetriever = None
+  def __init__(self):
+    self.model: OllamaLLM = None
+    self.retriever: ParentDocumentRetriever = None
+
 
 def load_vector_store():
-    print("\nCreating embeddings and loading Vectore Store, please be patient...")
-    
-    loader = DirectoryLoader(
-        path="articles",
-        glob="*.md",
-        loader_cls=TextLoader
-    )
+  print("\nCreating embeddings and loading Vectore Store, please be patient...")
 
-    documentsForVectorStore = loader.load()
+  loader = DirectoryLoader(
+      path="articles",
+      glob="*.md",
+      loader_cls=TextLoader
+  )
 
-    embeddings = OllamaEmbeddings(
-        model="mxbai-embed-large",
-        base_url="http://localhost:11434",
-    )
+  documentsForVectorStore = loader.load()
 
-    vectorstore = InMemoryVectorStore(embeddings)
-    byte_store = InMemoryStore()
+  embeddings = OllamaEmbeddings(
+      model="mxbai-embed-large",
+      base_url="http://localhost:11434",
+  )
 
-    retriever = ParentDocumentRetriever(
-        vectorstore=vectorstore,
-        byte_store=byte_store,
-        child_splitter=RecursiveCharacterTextSplitter(
-            chunk_overlap=0,
-            chunk_size=500,
-        )
-    )
+  vectorstore = InMemoryVectorStore(embeddings)
+  byte_store = InMemoryStore()
 
-    retriever.add_documents(documentsForVectorStore)
+  retriever = ParentDocumentRetriever(
+      vectorstore=vectorstore,
+      byte_store=byte_store,
+      child_splitter=RecursiveCharacterTextSplitter(
+          chunk_overlap=0,
+          chunk_size=500,
+      )
+  )
 
-    return retriever
+  retriever.add_documents(documentsForVectorStore)
+
+  return retriever
+
 
 chat_context = ChatContext()
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # initialize models and vector stores
-    chat_context.retriever = load_vector_store()
-    # chat_context.model = OllamaLLM(model='llama3.2')
-    chat_context.model = OpenAI(model="gpt-4o-mini")
-    
-    yield
+  # initialize models and vector stores
+  chat_context.retriever = load_vector_store()
+  chat_context.model = OllamaLLM(model='llama3.2')
 
-    # Clean up and release the resources
-    
+  yield
+
+  # Clean up and release the resources
+
 app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[ "http://localhost:5173" ],
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+
 def retrieve_related_articles(input):
-    related_article_documents = chat_context.retriever.invoke(input)
+  related_article_documents = chat_context.retriever.invoke(input)
 
-    print("\nRelated article retrieved:\n")
-    print("\n" + related_article_documents[0].page_content)
-    print("\nCalling the LLM with context...")
+  print("\nRelated article retrieved:\n")
+  print("\n" + related_article_documents[0].page_content)
+  print("\nCalling the LLM with context...")
 
-    return related_article_documents[0].page_content
+  return related_article_documents[0].page_content
 
 
 @app.post("/")
 def read_root(chat_request: ChatRequest):
-    print("\nReceived question: " + chat_request.question)
+  print("\nReceived question: " + chat_request.question)
 
-    model = chat_context.model
+  model = chat_context.model
 
-    message_history = []
+  message_history = []
 
-    for msg in chat_request.history:
-        message_history.append((msg.role, msg.content))
+  for msg in chat_request.history:
+    message_history.append((msg.role, msg.content))
 
-    messages = [
-        ("system", """
+  messages = [
+      ("system", """
 You are a helpful AI Support Representative. Use the following support 
 article to answer questions.  Only use the provided <article> and if an 
 answer can't be found, respond with:  I'm sorry I can't help with that.  
 Please email support at support@acme.com."""),
-        MessagesPlaceholder(variable_name="history"),
-        ("human", "<article>{context}</article>\n\nQuestion: {question}")
-    ]
+      MessagesPlaceholder(variable_name="history"),
+      ("human", "<article>{context}</article>\n\nQuestion: {question}")
+  ]
 
-    prompt = ChatPromptTemplate.from_messages(messages)
-    
-    prompt_context = RunnableMap({
-        "context": RunnableLambda(func=retrieve_related_articles),
-        "question": RunnablePassthrough(),
-        "history": lambda _: message_history
-    })
+  prompt = ChatPromptTemplate.from_messages(messages)
 
-    parser = StrOutputParser()
+  prompt_context = RunnableMap({
+      "context": RunnableLambda(func=retrieve_related_articles),
+      "question": RunnablePassthrough(),
+      "history": lambda _: message_history
+  })
 
-    chain = prompt_context | prompt | model | parser
+  parser = StrOutputParser()
 
-    stream = chain.stream(chat_request.question)
+  chain = prompt_context | prompt | model | parser
 
-    return StreamingResponse(stream, media_type="text/plain")
+  stream = chain.stream(chat_request.question)
+
+  return StreamingResponse(stream, media_type="text/plain")

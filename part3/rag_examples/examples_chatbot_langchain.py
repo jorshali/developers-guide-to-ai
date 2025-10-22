@@ -1,6 +1,6 @@
 from langchain_chroma.vectorstores import Chroma
 from langchain_ollama.embeddings import OllamaEmbeddings
-from langchain_text_splitters import MarkdownHeaderTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
 from langchain.prompts import ChatPromptTemplate
 from langchain_ollama import OllamaLLM
@@ -13,16 +13,12 @@ documentation_as_documents = TextLoader('../../README.md').load()
 print("Number of documents: ", len(documentation_as_documents))
 print(documentation_as_documents[0].model_dump_json(indent=2))
 
-headers_to_split_on = [
-    ("#", "Header 1"),
-    ("##", "Header 2"),
-    ("###", "Header 3"),
-]
-
-splitter = MarkdownHeaderTextSplitter(headers_to_split_on=headers_to_split_on)
+splitter = RecursiveCharacterTextSplitter.from_language(
+  language="markdown", chunk_size=1200)
 
 # Initialize the document loader
-document_chunks = splitter.split_text(documentation_as_documents[0].page_content)
+document_chunks = splitter.split_text(
+  documentation_as_documents[0].page_content)
 
 print("Number of chunks: ", len(document_chunks))
 
@@ -32,8 +28,8 @@ embeddings = OllamaEmbeddings(
     base_url="http://localhost:11434",
 )
 
-vector_db = Chroma.from_documents(
-    documents=document_chunks,
+vector_db = Chroma.from_texts(
+    texts=document_chunks,
     embedding=embeddings,
     collection_name="documentation_collection"
 )
@@ -56,7 +52,9 @@ What would you like to know?  Ask me about setup, running, or troubleshooting.
 
 while question != "\\bye":
   if question:
-    results = vector_db.similarity_search_with_score(question, k=1)
+    results = vector_db.similarity_search_with_score(question, k=3)
+
+    text_snippets = [result[0].page_content for result in results]
 
     messages = [
       ("system", "You are a helpful assistant and will answer questions about the Developer's Guide to AI.  Only use the provided context to answer.  If you don't know the answer, say so."),
@@ -65,23 +63,21 @@ while question != "\\bye":
 
     prompt = ChatPromptTemplate.from_messages(messages)
     parser = StrOutputParser()
-    
+
     chain = prompt | llm | StrOutputParser()
 
-    response =chain.stream({
-      "context": results[0][0].page_content,
+    response = chain.stream({
+      "context": '\n'.join(text_snippets),
       "question": question
     })
 
     print("\nProcessing...\n\n")
-  
+
     for chunk in response:
       print(chunk, end="", flush=True)
 
   else:
     print("Sorry, you need to ask a question.")
 
-  question = input("\n\nWhat else would you like to know?\n\nUse \\bye to exit\n\nQuestion: ")
-
-
-
+  question = input(
+    "\n\nWhat else would you like to know?\n\nUse \\bye to exit\n\nQuestion: ")

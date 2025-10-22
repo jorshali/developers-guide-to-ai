@@ -1,5 +1,6 @@
-fastapi[standard]
-langchain
-langchain-ollama
-langchain-community
-ollama
+fastapi[standard]>=0.119.0
+langchain==0.3.27
+langchain-core==0.3.79
+langchain-ollama==0.3.10
+langchain-community==0.3.31
+ollama==0.6.0

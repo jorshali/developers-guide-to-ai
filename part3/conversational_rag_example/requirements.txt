@@ -1,6 +1,6 @@
 fastapi[standard]
-langchain
-langchain-ollama
-langchain-community
+langchain==0.3.27
+langchain-ollama==0.3.10
+langchain-community==0.3.31
 chromadb
 transformers
