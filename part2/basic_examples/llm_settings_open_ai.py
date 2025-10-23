@@ -4,9 +4,9 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 response = openai.chat.completions.create(
-  model="gpt-4o-mini", 
+  model="gpt-4o-mini",
   messages=[
-      {"role": "user",   "content": """Tell me if the following statement is: positive, neutral, or negative.  Only respond with the sentiment.
+    {"role": "user", "content": """Tell me if the following statement is: positive, neutral, or negative.  Only respond with the sentiment.
 
 Statement:  Thank you @Acme Corp!  Can't wait to try this new shampoo!
 Sentiment:"""}
