@@ -1,10 +1,10 @@
 import json
 
-from multi_document_vector_store import MultiDocumentVectorStore
+from common.multi_document_vector_store import MultiDocumentVectorStore
 from ollama import chat
 from jinja2 import Environment, FileSystemLoader
-from document_retrieval import download_remote_document
-from conversation_history import ConversationHistory
+from common.document_retrieval import download_remote_document
+from common.conversation_history import ConversationHistory
 
 env = Environment(
   loader=FileSystemLoader(searchpath="templates")
@@ -36,7 +36,7 @@ Welcome to the Developer's Guide to AI Examples!
 
 What would you like to know?  Ask me about setup, running, or troubleshooting.  I'll tell you what I know and link you to the right documentation.
 
-(Note:  I won't remember our conversation history, so please be specific.)
+(Note:  I have chat history, so I'll remember what we talk about.)
 
 \\bye to exit.
 
@@ -63,6 +63,8 @@ while question != "\\bye":
         "role": "user",
         "content": user_prompt.render(documents=documents, question=question)
       })
+
+    conversation_history.trim_history()
 
     messages = conversation_history.get_messages()
 

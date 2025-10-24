@@ -1,10 +1,10 @@
 import requests
 
-from document import Document
+from common.document import Document
 
 
-def load_local_readme_document():
-  with open('../../README.md') as f:
+def load_local_readme_document(filename: str):
+  with open(filename) as f:
     readme_documentation = f.read()
 
     return readme_documentation

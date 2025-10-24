@@ -13,7 +13,7 @@ class DocumentVectorStore:
   def __init__(self, document: str):
     self.collection: Collection = self._initialize_vector_store(document)
 
-  def query(self, question: str):
+  def query(self, question: str) -> List[str]:
     results = self.collection.query(query_texts=[question], n_results=3)
 
     documents = results.get('documents')[0]
@@ -36,11 +36,11 @@ class DocumentVectorStore:
 
     document_chunks = self._chunk_document(document)
 
-    collection.add(
-      documents=document_chunks,
-      ids=[f"doc{chunk_idx + 1}" for chunk_idx,
-           chunk in enumerate(document_chunks)]
-    )
+    for chunk_idx, document_chunk in document_chunks:
+      collection.add(
+        documents=document_chunk,
+        ids=f"doc{chunk_idx + 1}"
+      )
 
     return collection
 

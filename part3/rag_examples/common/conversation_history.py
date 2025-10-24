@@ -1,6 +1,16 @@
-from typing import List, Mapping, Any
+import tiktoken
+
+from typing import List, Mapping, Any, Literal, TypedDict
 from ollama import chat
 from pydantic import BaseModel, Field
+
+
+class Message(TypedDict):
+  role: Literal["system", "user", "assistant", "tool"]
+  content: str
+
+
+Messages = List[Message]
 
 
 class HistoryResponse(BaseModel):
@@ -9,9 +19,11 @@ class HistoryResponse(BaseModel):
 
 
 class ConversationHistory:
-  def __init__(self, system_message: Mapping[str, Any]):
+  def __init__(self, system_message: Message, model_name='gpt2', max_tokens=8000):
     self.system_message = system_message
-    self.message_history: List[Mapping[str, Any]] = []
+    self.message_history: Messages = []
+    self.model_name = model_name
+    self.max_tokens = max_tokens
 
   def add_message(self, message: Mapping[str, Any]):
     self.message_history.append(message)
@@ -50,3 +62,18 @@ class ConversationHistory:
       response.message.content)
 
     return history_response.can_answer_question
+
+  def count_tokens(self):
+    encoding = tiktoken.encoding_for_model(self.model_name)
+
+    token_count = 0
+
+    for message in self.get_messages():
+      tokens = encoding.encode(message['content'])
+      token_count += len(tokens)
+
+    return token_count
+
+  def trim_history(self):
+    while self.count_tokens() > self.max_tokens and len(self.message_history) > 2:
+      self.message_history = self.message_history[2:]

@@ -1,7 +1,9 @@
-from document_vector_store import DocumentVectorStore
+
 from ollama import chat
 from jinja2 import Environment, FileSystemLoader
-from document_retrieval import load_local_readme_document
+
+from common.document_retrieval import load_local_readme_document
+from common.document_vector_store import DocumentVectorStore
 
 env = Environment(
   loader=FileSystemLoader(searchpath="templates")
@@ -12,7 +14,8 @@ user_prompt = env.get_template("basic_support_user_prompt.txt")
 
 print("\nLoading the README file, please wait just a moment...\n")
 
-readme_vector_store = DocumentVectorStore(load_local_readme_document())
+readme_vector_store: DocumentVectorStore = DocumentVectorStore(
+  load_local_readme_document('../../README.md'))
 
 question = input("""Welcome to the Developer's Guide to AI Examples!
 ----------------------------------------------------------
@@ -36,7 +39,7 @@ while question != "\\bye":
       },
         {
         "role": "user",
-        "content": user_prompt.render(question="\n".join(documents))
+        "content": user_prompt.render(documents=documents, question=question)
       }
     ]
 
@@ -45,6 +48,8 @@ while question != "\\bye":
       messages=messages,
       stream=True
     )
+
+    print()
 
     for chunk in response:
       if chunk.message.content:

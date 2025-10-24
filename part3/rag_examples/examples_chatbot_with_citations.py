@@ -1,7 +1,7 @@
-from multi_document_vector_store import MultiDocumentVectorStore
+from common.multi_document_vector_store import MultiDocumentVectorStore
 from ollama import chat
 from jinja2 import Environment, FileSystemLoader
-from document_retrieval import download_remote_document
+from common.document_retrieval import download_remote_document
 
 env = Environment(
   loader=FileSystemLoader(searchpath="templates")

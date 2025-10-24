@@ -3,7 +3,7 @@ import chromadb
 from chromadb import Collection
 from typing import List
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from document import Document
+from common.document import Document
 
 from chromadb.utils.embedding_functions.ollama_embedding_function import (
   OllamaEmbeddingFunction,
@@ -47,13 +47,12 @@ class MultiDocumentVectorStore:
     for doc_idx, document in enumerate(documents):
       document_chunks = self._chunk_document(document.content)
 
-      collection.add(
-        documents=document_chunks,
-        ids=[f"doc_{doc_idx + 1}_{chunk_idx + 1}" for chunk_idx,
-             chunk in enumerate(document_chunks)],
-        metadatas=[{"source_url": document.source_url}
-                   for chunk in document_chunks]
-      )
+      for chunk_idx, document_chunk in enumerate(document_chunks):
+        collection.add(
+          documents=document_chunk,
+          ids=f"doc_{doc_idx + 1}_{chunk_idx + 1}",
+          metadatas={"source_url": document.source_url}
+        )
 
     return collection
 
