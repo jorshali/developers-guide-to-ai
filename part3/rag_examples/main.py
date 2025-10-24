@@ -107,7 +107,7 @@ def handle_post(chat_request: ChatRequest):
 
   for msg in chat_request.history:
     conversation_history.add_message({
-      'role': "user",
+      'role': 'user',
       'content': msg.content
     })
 
