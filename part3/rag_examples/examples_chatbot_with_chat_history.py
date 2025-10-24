@@ -51,18 +51,12 @@ conversation_history = ConversationHistory(system_message)
 
 while question != "\\bye":
   if question:
-    if conversation_history.can_answer_question(question):
-      conversation_history.add_message({
-        "role": "user",
-        "content": question
-      })
-    else:
-      documents = readme_vector_store.query(question)
+    documents = readme_vector_store.query(question)
 
-      conversation_history.add_message({
-        "role": "user",
-        "content": user_prompt.render(documents=documents, question=question)
-      })
+    conversation_history.add_message({
+      "role": "user",
+      "content": user_prompt.render(documents=documents, question=question)
+    })
 
     conversation_history.trim_history()
 
@@ -87,7 +81,7 @@ while question != "\\bye":
         llm_response += chunk.message.content
 
     messages = conversation_history.add_message({
-      "role": "assistant",
+      "role": "user",  # workaround since Ollama doesn't do a great job with assistant history
       "content": llm_response
     })
 

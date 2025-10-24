@@ -75,7 +75,7 @@ The project is organized into parts. Each part corresponds to a part with in boo
 
 - `part1/`: Getting started with AI
 - `part2/`: Prompt Engineering
-- `part3/`: Vector Databases and RAG
+- `part3/`: Vector Databases and RAG (Retrieval-Augmented Generation)
 - `part4/`: Fine-tuning
 - `part5/`: Agents
 
@@ -122,17 +122,17 @@ This part dives deeper into LLM capabilities with practical examples of prompt e
 
 ---
 
-## Part 3: Vector Databases and RAG
+## Part 3: Vector Databases and RAG (Retrieval-Augmented Generation)
 
 This part focuses on building advanced AI applications using Retrieval-Augmented Generation (RAG) and vector databases.
 
 | Project | Description |
 | --- | --- |
-| [part3/advanced_rag/](part3/advanced_rag/) | An advanced RAG implementation that uses a combination of BM25 and vector search (ensemble retriever) along with multi-query retrieval to enhance search results. It also includes a reranker to improve the relevance of the retrieved documents. |
+| [part3/advanced_rag/](part3/advanced_rag/) | An advanced RAG (Retrieval-Augmented Generation) implementation that uses a combination of BM25 and vector search (ensemble retriever) along with multi-query retrieval to enhance search results. It also includes a reranker to improve the relevance of the retrieved documents. |
 | [part3/basic_examples/](part3/basic_examples/) | A Python script for experimenting with different text chunking strategies using LangChain's `RecursiveCharacterTextSplitter`. |
 | [part3/client/](part3/client/) | A React-based chat interface that interacts with a RAG API. It supports conversational history and displays streaming responses from the backend. |
-| [part3/conversational_rag_example/](part3/conversational_rag_example/) | A FastAPI server that implements a conversational RAG system. It uses a vector store to retrieve relevant documents and maintains conversation history to provide context-aware responses. |
-| [part3/parent_document_retriever_rag/](part3/parent_document_retriever_rag/) | A RAG implementation that uses the `ParentDocumentRetriever` to handle large documents. This approach splits documents into smaller chunks for embedding and retrieval, but returns the larger parent document for better context. |
+| [part3/conversational_rag_example/](part3/conversational_rag_example/) | A FastAPI server that implements a conversational RAG (Retrieval-Augmented Generation) system. It uses a vector store to retrieve relevant documents and maintains conversation history to provide context-aware responses. |
+| [part3/parent_document_retriever_rag/](part3/parent_document_retriever_rag/) | A RAG (Retrieval-Augmented Generation) implementation that uses the `ParentDocumentRetriever` to handle large documents. This approach splits documents into smaller chunks for embedding and retrieval, but returns the larger parent document for better context. |
 | [part3/rag_examples/](part3/rag_examples/) | A set of Python scripts that demonstrate different ways to build a RAG-based chatbot. It includes examples using both LangChain and the Ollama SDK. |
 | [part3/simple_rag_javascript/](part3/simple_rag_javascript/) | A Node.js server that implements a simple RAG system in JavaScript. It uses an in-memory vector store and the `ParentDocumentRetriever` to answer questions based on a set of articles. |
 | [part3/vector_databases/](part3/vector_databases/) | A collection of Python scripts that showcase various use cases for vector databases, including document search, product recommendation, and interactive product search with filtering. |

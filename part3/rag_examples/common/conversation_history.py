@@ -39,39 +39,6 @@ class ConversationHistory:
 
     return message_history_as_string
 
-  def can_answer_question(self, question: str):
-    # TODO clean up this method
-    if not self.has_history():
-      return False
-
-    messages = list(self.message_history)
-
-    messages.append({
-      "role": "user",
-      "content": f"""Can you answer the user question based on the following <chat_history>?  Respond with true only if you have the context needed to answer the question.
-
-<chat_history>
-{self.message_history_as_string()}
-</chat_history>
-      
-Question: {question}"""
-    })
-
-    response = chat(
-      model="llama3.2",
-      messages=messages,
-      stream=False,
-      format=HistoryResponse.model_json_schema(),
-      options={
-        "temperature": 0
-      }
-    )
-
-    history_response = HistoryResponse.model_validate_json(
-      response.message.content)
-
-    return history_response.can_answer_question
-
   def count_tokens(self):
     encoding = tiktoken.encoding_for_model(self.model_name)
 

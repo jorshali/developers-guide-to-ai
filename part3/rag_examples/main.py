@@ -12,7 +12,6 @@ from pydantic import BaseModel
 from common.conversation_history import ConversationHistory
 from common.document_retrieval import download_remote_document
 from common.multi_document_vector_store import MultiDocumentVectorStore
-from common.messages import Messages
 
 env = Environment(
   loader=FileSystemLoader(searchpath="templates")
@@ -108,24 +107,18 @@ def handle_post(chat_request: ChatRequest):
 
   for msg in chat_request.history:
     conversation_history.add_message({
-      'role': msg.role,
+      'role': "user",
       'content': msg.content
     })
 
-  if conversation_history.can_answer_question(question):
-    conversation_history.add_message({
-      "role": "user",
-      "content": question
-    })
-  else:
-    documents = chat_context.vector_store.query(question)
-
-    conversation_history.add_message({
-      "role": "user",
-      "content": user_prompt.render(documents=documents, question=question)
-    })
-
   conversation_history.trim_history()
+
+  documents = chat_context.vector_store.query(question)
+
+  conversation_history.add_message({
+    "role": "user",
+    "content": user_prompt.render(documents=documents, question=question)
+  })
 
   return StreamingResponse(
     generate_stream(conversation_history), media_type="text/plain")
