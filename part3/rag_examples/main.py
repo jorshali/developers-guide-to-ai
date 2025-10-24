@@ -1,12 +1,10 @@
-import json
-
 from contextlib import asynccontextmanager
 from typing import Literal, List
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-from ollama import Client
+from ollama import chat
 from jinja2 import Environment, FileSystemLoader
 
 from pydantic import BaseModel
@@ -14,6 +12,7 @@ from pydantic import BaseModel
 from common.conversation_history import ConversationHistory
 from common.document_retrieval import download_remote_document
 from common.multi_document_vector_store import MultiDocumentVectorStore
+from common.messages import Messages
 
 env = Environment(
   loader=FileSystemLoader(searchpath="templates")
@@ -38,7 +37,6 @@ class ChatRequest(BaseModel):
 
 class ChatContext():
   def __init__(self):
-    self.client: Client = None
     self.vector_store: MultiDocumentVectorStore = None
 
 
@@ -66,7 +64,6 @@ chat_context = ChatContext()
 async def lifespan(app: FastAPI):
   # initialize models and vector stores
   chat_context.vector_store = load_vector_store()
-  chat_context.client = Client()
 
   yield
 
@@ -84,8 +81,12 @@ app.add_middleware(
 
 
 def generate_stream(conversation_history: ConversationHistory):
-  result = chat_context.client.chat(
-    stream=True, model="llama3.2", messages=conversation_history.get_messages(), options={'temperature': 0})
+  result = chat(
+    stream=True,
+    model="llama3.2",
+    messages=conversation_history.get_messages(),
+    options={'temperature': 0}
+  )
 
   for chunk in result:
     if chunk.message and chunk.message.content:
@@ -93,7 +94,7 @@ def generate_stream(conversation_history: ConversationHistory):
 
 
 @app.post("/")
-def chat(chat_request: ChatRequest):
+def handle_post(chat_request: ChatRequest):
   print("\nReceived question: " + chat_request.question)
 
   question = chat_request.question

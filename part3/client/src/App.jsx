@@ -97,7 +97,8 @@ function App() {
 
   return (
     <div className="chat-container">
-      <h1>AI Support Agent</h1>
+      <h1>The Developer's Guide to AI</h1>
+      <h5>Examples Support Chatbot</h5>
       <div className="chat-box">
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.role}`}>
@@ -120,7 +121,7 @@ function App() {
           value={inputMessage}
           onChange={handleInputChange}
           onKeyPress={handleKeyPress}
-          placeholder="Type your message here..."
+          placeholder="You can ask me about the examples..."
           disabled={isLoading}
         />
         <button 

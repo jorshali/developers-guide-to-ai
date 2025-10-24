@@ -1,16 +1,10 @@
 import tiktoken
 
-from typing import List, Mapping, Any, Literal, TypedDict
+from typing import Mapping, Any
 from ollama import chat
 from pydantic import BaseModel, Field
 
-
-class Message(TypedDict):
-  role: Literal["system", "user", "assistant", "tool"]
-  content: str
-
-
-Messages = List[Message]
+from common.messages import Messages, Message
 
 
 class HistoryResponse(BaseModel):

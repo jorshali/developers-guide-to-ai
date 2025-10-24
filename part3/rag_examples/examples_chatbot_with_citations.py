@@ -55,7 +55,10 @@ while question != "\\bye":
     response = chat(
       model="llama3.2",
       messages=messages,
-      stream=True
+      stream=True,
+      options={
+        "temperature": 0
+      }
     )
 
     for chunk in response:

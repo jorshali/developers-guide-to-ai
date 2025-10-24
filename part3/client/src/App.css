@@ -6,12 +6,6 @@
   
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
@@ -45,8 +39,8 @@
 .chat-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 10px 20px 20px 20px;
-  height: 100vh;
+  padding: 0px;
+  height: 90vh;
   max-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -55,9 +49,21 @@
 
 h1 {
   text-align: center;
-  margin: 0 0 10px 0;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  padding: 0;
   color: #333;
   font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+h5 {
+  text-align: center;
+  margin-bottom: 10px;
+  margin-block-start: 0px;
+  padding: 0;
+  color: #777;
+  font-size: 0.8rem;
   flex-shrink: 0;
 }
 
