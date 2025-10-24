@@ -37,7 +37,16 @@ class ConversationHistory:
   def has_history(self):
     return len(self.message_history) > 0
 
+  def message_history_as_string(self):
+    message_history_as_string = ''
+
+    for message in self.message_history:
+      message_history_as_string += f"{message['role']}: {message['content']}\n"
+
+    return message_history_as_string
+
   def can_answer_question(self, question: str):
+    # TODO clean up this method
     if not self.has_history():
       return False
 
@@ -45,7 +54,13 @@ class ConversationHistory:
 
     messages.append({
       "role": "user",
-      "content": "Can you answer the user question based on the chat history?  Respond with true only if you have the context needed to answer the question. Question:" + question
+      "content": f"""Can you answer the user question based on the following <chat_history>?  Respond with true only if you have the context needed to answer the question.
+
+<chat_history>
+{self.message_history_as_string()}
+</chat_history>
+      
+Question: {question}"""
     })
 
     response = chat(
