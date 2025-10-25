@@ -7,14 +7,13 @@ def load_file_contents(filename: str):
 
 
 article = load_file_contents(
-  '../articles/how_to_reset_your_workday_password.md')
+  '../articles/how_to_reset_your_acme_password.md')
 
 prompt_template: Template = Template("""
-You are a helpful Help Desk Representative. Use the following 
-support article to answer questions.  Only use the provided 
-<articles> and if an answer can't be found, respond with:  
-I'm sorry I can't help with that.  Please call customer 
-support at 555-555-1234.
+You are a helpful AI Support Representative. Use the following support 
+article to answer questions.  Only use the provided <articles> and if 
+an answer can't be found, respond with: I'm sorry I can't help with 
+that.  Please call customer support at 555-555-1234.
 
 <article>
 {{article}}

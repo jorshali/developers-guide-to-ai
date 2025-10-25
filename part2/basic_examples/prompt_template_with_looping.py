@@ -18,12 +18,12 @@ articles = load_file_contents("../articles")
 print(articles)
 
 env = Environment(
-  loader=FileSystemLoader(searchpath="templates"),
+  loader=FileSystemLoader("templates"),
   autoescape=select_autoescape()
 )
 
 prompt_template = env.get_template(
-  "help_desk_representative_template_with_looping.txt")
+  "ai_support_representative_prompt_template_with_looping.txt")
 
 question = "I'm having password issues.  Can you help me login?"
 
