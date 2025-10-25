@@ -1,15 +1,8 @@
 import tiktoken
 
-from typing import TypedDict, Literal, List
+from messages import Messages, Message
+from typing import List
 from ollama import chat
-
-
-class Message(TypedDict):
-  role: Literal["system", "user", "assistant", "tool"]
-  content: str
-
-
-Messages = List[Message]
 
 
 class ConversationHistory:
