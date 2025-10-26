@@ -1,5 +1,4 @@
 from typing import TypedDict, Literal, List
-from pydantic import BaseModel
 
 
 class Message(TypedDict):

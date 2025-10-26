@@ -1,26 +1,31 @@
+from openai import OpenAI
+import instructor
+from pydantic import BaseModel, EmailStr, Field
+from typing import Optional
+import json
 import logging
 
 # Set logging to DEBUG
 logging.basicConfig(level=logging.DEBUG)
 
-import json
-
-from typing import Optional
-from pydantic import BaseModel, EmailStr, Field
 
 class ContactInformation(BaseModel):
-  sender_name: Optional[str] = Field(default=None, description="name of the email sender")
-  location: Optional[str] = Field(default=None, description="location of the email sender")
-  job_title: Optional[str] = Field(default=None, description="job title for the email sender")
-  company: Optional[str] = Field(default=None, description="company the email sender works for")
-  email: EmailStr | None = Field(default=None, description="email address of the email sender")
-  phone_number: Optional[str] = Field(default=None, description="phone number of the email sender")
+  sender_name: Optional[str] = Field(
+    default=None, description="name of the email sender")
+  location: Optional[str] = Field(
+    default=None, description="location of the email sender")
+  job_title: Optional[str] = Field(
+    default=None, description="job title for the email sender")
+  company: Optional[str] = Field(
+    default=None, description="company the email sender works for")
+  email: EmailStr | None = Field(
+    default=None, description="email address of the email sender")
+  phone_number: Optional[str] = Field(
+    default=None, description="phone number of the email sender")
+
 
 print(json.dumps(ContactInformation.model_json_schema(), indent=2))
 
-import instructor
-
-from openai import OpenAI
 
 client = instructor.from_openai(
   OpenAI(base_url="http://localhost:11434/v1", api_key="none"),
@@ -28,6 +33,7 @@ client = instructor.from_openai(
 )
 
 system_message = "Given an <email> message, you will extract the sender's contact information."
+
 
 def extract_contact_information(email: str) -> ContactInformation:
   return client.chat.completions.create(
@@ -40,6 +46,7 @@ def extract_contact_information(email: str) -> ContactInformation:
     temperature=0,
     context={"email": email}
   )
+
 
 email1 = """Hi Jacob,
 Thank you for sending over the detailed proposal. I've reviewed it with our product and 

@@ -38,14 +38,15 @@ def generate_stream(chatRequest: ChatRequest):
 
   for chunk in result:
     if chunk.message and chunk.message.content:
-      print('\nReturned GenerateResponse object for chunk:\n')
-      print(chunk.model_dump_json(indent=2))
-
       yield chunk.message.content
 
 
 @app.post("/")
 def chat_request(chatRequest: ChatRequest):
+  print("ChatRequest with history:")
+  print("----------------------------")
+  print(chatRequest.model_dump_json(indent=2))
+
   return StreamingResponse(
     generate_stream(chatRequest), media_type="text/plain"
   )

@@ -1,5 +1,5 @@
 fastapi[standard]>=0.119.0
 ollama>=0.6.0
-openai>=2.5.0
+openai>=1.70.0
 instructor>=1.11.3
 email-validator>=2.3.0

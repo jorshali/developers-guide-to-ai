@@ -6,7 +6,7 @@ from messages import Messages, Message
 
 
 class ConversationHistory:
-  def __init__(self, system_message: Message, model_name='gpt2', max_tokens=600):
+  def __init__(self, system_message: Message, model_name='cl100k_base', max_tokens=600):
     self.system_message = system_message
     self.message_history: Messages = []
     self.model_name = model_name
@@ -39,7 +39,7 @@ class ConversationHistory:
     return token_count
 
   def trim_history(self):
-    while self.count_tokens() > self.max_tokens and len(self.message_history) > 2:
+    while self.count_tokens() > self.max_tokens and len(self.message_history) >= 2:
       self.message_history = self.message_history[2:]
 
   def message_history_as_string(self):
@@ -52,12 +52,17 @@ class ConversationHistory:
 
   def summarize_history(self, max_summary_tokens=120):
     summary_prompt = [
-      {"role": "system", "content": "You are an assistant that summarizes conversations."},
-      {"role": "user", "content": (
-        "Summarize the following conversation in a concise way that preserves key facts and context:\n\n" +
-        self.message_history_as_string() + "\n\n" +
-        f"Limit your summary to{max_summary_tokens} words or less."
-      )}
+      {
+        "role": "system",
+        "content": "You are an assistant that summarizes conversations."
+      },
+      {
+        "role": "user",
+        "content": f"""
+Summarize the following conversation in a concise way that preserves key facts and context:
+{self.message_history_as_string()}. Limit your summary to {max_summary_tokens} words or less.
+"""
+      }
     ]
 
     response = chat(

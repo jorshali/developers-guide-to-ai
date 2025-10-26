@@ -1,6 +1,6 @@
 fastapi[standard]>=0.119.0
 ollama>=0.6.0
-openai>=2.5.0
+openai>=1.70.0
 tiktoken>=0.12.0
 jinja2>=3.1.6
 transformers>=4.57.1
