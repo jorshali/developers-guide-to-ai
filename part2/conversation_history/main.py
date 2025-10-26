@@ -3,7 +3,7 @@ from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from ollama import chat
 
-from messages import ChatRequest
+from chat_request import ChatRequest
 from conversation_history import ConversationHistory
 
 app = FastAPI()
@@ -24,6 +24,7 @@ def generate_stream(chatRequest: ChatRequest):
   })
 
   conversation_history.add_messages(chatRequest.history)
+
   conversation_history.add_message({
     "role": "user",
     "content": chatRequest.question

@@ -8,8 +8,3 @@ class Message(TypedDict):
 
 
 Messages = List[Message]
-
-
-class ChatRequest(BaseModel):
-  question: str
-  history: Messages = []

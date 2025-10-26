@@ -1,8 +1,8 @@
 import tiktoken
 
-from messages import Messages, Message
-from typing import List
 from ollama import chat
+
+from messages import Messages, Message
 
 
 class ConversationHistory:
@@ -12,7 +12,7 @@ class ConversationHistory:
     self.model_name = model_name
     self.max_tokens = max_tokens
 
-  def add_messages(self, messages: List[Message]):
+  def add_messages(self, messages: Messages):
     self.message_history.extend(messages)
 
   def add_message(self, message: Message):
