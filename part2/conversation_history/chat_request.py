@@ -10,3 +10,7 @@ class ChatRequestMessage(BaseModel):
 class ChatRequest(BaseModel):
   question: str
   history: List[ChatRequestMessage] = []
+
+
+class SummarizeRequest(BaseModel):
+  history: List[ChatRequestMessage] = []
