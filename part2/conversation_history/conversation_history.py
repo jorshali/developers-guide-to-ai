@@ -6,10 +6,10 @@ from messages import Messages, Message
 
 
 class ConversationHistory:
-  def __init__(self, system_message: Message, model_name='cl100k_base', max_tokens=600):
+  def __init__(self, system_message: Message, encoding_name='cl100k_base', max_tokens=600):
     self.system_message = system_message
     self.message_history: Messages = []
-    self.model_name = model_name
+    self.encoding_name = encoding_name
     self.max_tokens = max_tokens
 
   def add_messages(self, messages: Messages):
@@ -28,7 +28,7 @@ class ConversationHistory:
     return len(self.message_history) > 0
 
   def count_tokens(self):
-    encoding = tiktoken.encoding_for_model(self.model_name)
+    encoding = tiktoken.get_encoding(self.encoding_name)
 
     token_count = 0
 
@@ -41,41 +41,3 @@ class ConversationHistory:
   def trim_history(self):
     while self.count_tokens() > self.max_tokens and len(self.message_history) >= 2:
       self.message_history = self.message_history[2:]
-
-  def message_history_as_string(self):
-    message_history_as_string = ''
-
-    for message in self.message_history:
-      message_history_as_string += f"{message['role']}: {message['content']}\n"
-
-    return message_history_as_string
-
-  def summarize_history(self, max_summary_tokens=120):
-    summary_prompt = [
-      {
-        "role": "system",
-        "content": "You are an assistant that summarizes conversations."
-      },
-      {
-        "role": "user",
-        "content": f"""
-Summarize the following conversation in a concise way that preserves key facts and context:
-{self.message_history_as_string()}. Limit your summary to {max_summary_tokens} words or less.
-"""
-      }
-    ]
-
-    response = chat(
-      model="llama3.2",
-      messages=summary_prompt,
-      stream=False,
-      options={
-        'num_predict': max_summary_tokens,
-        'temperature': 0
-      }
-    )
-
-    self.message_history = [{
-      'role': 'user',
-      'content': response.message.content
-    }]

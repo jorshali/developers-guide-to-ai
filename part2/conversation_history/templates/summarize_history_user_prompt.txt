@@ -1,5 +1,7 @@
 <conversation>
-{{message_history_as_string}}
+{% for message in messages %}
+`{{message.role}}`: {{message.content}}
+{% endfor %}
 </conversation>
 
 Summary:

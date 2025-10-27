@@ -1,11 +1,7 @@
-conversation_history = [
+conversation_history_example_data = [
     {
         "role": "user",
         "content": (
-            "You are a helpful Help Desk Representative. Use the following "
-            "support article to answer questions. Only use the provided <articles> "
-            "and if an answer can't be found, respond with: "
-            "\"I'm sorry I can't help with that. Please email customer support at support@acme.com.\"\n\n"
             "<article>\n"
             "To reset your password, follow these simple steps:\n\n"
             "1. Click on the \"Forgot Password\" link on the login page\n"
@@ -44,7 +40,6 @@ conversation_history = [
     {
         "role": "user",
         "content": (
-            "Using the same article:\n\n"
             "<article>\n"
             "To reset your password, follow these simple steps:\n\n"
             "1. Click on the \"Forgot Password\" link on the login page\n"
@@ -74,7 +69,6 @@ conversation_history = [
     {
         "role": "user",
         "content": (
-            "Using the same article:\n\n"
             "<article>\n"
             "To reset your password, follow these simple steps:\n\n"
             "1. Click on the \"Forgot Password\" link on the login page\n"

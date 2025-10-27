@@ -1,7 +1,7 @@
 import json
 
 from conversation_history import ConversationHistory
-from conversation_history_example_data import conversation_history
+from conversation_history_example_data import conversation_history_example_data
 
 history = ConversationHistory(
   system_message={
@@ -13,11 +13,11 @@ support article to answer questions.  Only use the provided
 I"m sorry I can"t help with that.  Please email customer support at
 support@acme.com."""
   },
-  model_name="cl100k_base",
+  encoding_name="cl100k_base",
   max_tokens=600
 )
 
-history.add_messages(conversation_history)
+history.add_messages(conversation_history_example_data)
 
 history.trim_history()
 
