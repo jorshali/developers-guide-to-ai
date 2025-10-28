@@ -31,7 +31,7 @@ all_titles_and_descriptions = zip(all_titles, all_descriptions)
 texts = [
   f"{title} {desc}" for title, desc in all_titles_and_descriptions
 ]
-    
+
 collection.add(
   documents=texts,
   metadatas=[{
@@ -40,7 +40,7 @@ collection.add(
     'category': category,
     'description': description,
     'price': str(price)  # ChromaDB requires strings in metadata
-  } for pid, title, category, description,price in zip(
+  } for pid, title, category, description, price in zip(
     products_df['product_id'],
     products_df['title'],
     products_df['category'],
@@ -59,4 +59,3 @@ results = collection.query(
 
 for metadata in results['metadatas'][0]:
   print(f"{metadata['product_id']}:  {metadata['title']}")
-
