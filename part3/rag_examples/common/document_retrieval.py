@@ -4,7 +4,7 @@ from common.document import Document
 
 
 def load_local_readme_document(filename: str):
-  with open(filename) as f:
+  with open(filename, 'r') as f:
     readme_documentation = f.read()
 
     return readme_documentation

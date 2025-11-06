@@ -1,4 +1,4 @@
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 text = """"Our system requires multi-factor Authentication (MFA). This helps secure your account.
 
