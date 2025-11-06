@@ -1,7 +1,7 @@
 {
   "name": "getting-started-section2",
   "version": "1.0.0",
-  "description": "A simple Node server that uses LangChain.js to call a local Ollama LLM",
+  "description": "A simple Node server that uses the Ollama SDK to call a local Ollama LLM and stream the response",
   "author": "Jacob Orshalick",
   "main": "server.mjs",
   "scripts": {
@@ -9,13 +9,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "thedevelopersguidetoai", "node", "nodejs", "express", "langchainjs", "ollama"
+    "thedevelopersguidetoai",
+    "node",
+    "nodejs",
+    "express",
+    "ollama"
   ],
   "license": "ISC",
   "dependencies": {
-    "@langchain/ollama": "^1.0.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "langchain": "^1.0.1"
+    "ollama": "^0.6.2"
   }
 }

@@ -1,23 +1,22 @@
 import express from "express";
-import { ChatOllama } from "@langchain/ollama";
+import { Ollama } from "ollama";
 
 const app = express();
 
-const model = new ChatOllama({
-  model: 'llama3.2'
-});
+const model = new Ollama();
 
 app.get('/', async (request, response) => {
   response.type('text/plain');
 
-  const modelResponse = 
-    await model.invoke(
-      "Can you simply say 'test'?");
+  const modelResponse = await model.generate({
+    prompt: "Can you simply say 'test'?",
+    model: 'llama3.2'
+  });
 
   console.log("\nAIMessage object response:\n")
   console.log(modelResponse);
 
-  response.send(modelResponse.content);
+  response.send(modelResponse.response);
 });
 
 app.listen(8000, () => {
