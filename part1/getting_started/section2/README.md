@@ -12,7 +12,7 @@ When you prompt an LLM, it generates the response in chunks.  Streaming allows y
 
 Similar to an infinite scroll, streaming makes LLMs feel infinitely faster to your end users.
 
-With Express and LangChain it's extremely simple to stream an LLM response from your own REST API.  This tutorial shows you how.
+With Express and the Ollama SDK it's extremely simple to stream an LLM response from your own REST API.  This tutorial shows you how.
 
 You can access the entire source along with a working UI in the GitHub repository linked in the comments.
 

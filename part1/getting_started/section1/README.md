@@ -9,7 +9,7 @@ With 10 minutes and basic JavaScript knowledge, you can build a REST service tha
 5 quick steps will have you:
 
 - Starting a REST service with Express and Node.js
-- Using LangChain to connect to Ollama APIs
+- Using the Ollama SDK to connect to Ollama APIs
 - Generating a response from a GPT model
 - Rendering that response to your browser
 
