@@ -1,6 +1,6 @@
-fastapi[standard]
+fastapi[standard]==0.119.0
 langchain==0.3.27
 langchain-ollama==0.3.10
 langchain-community==0.3.31
-chromadb
+chromadb>=0.4.22
 transformers

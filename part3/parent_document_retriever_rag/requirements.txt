@@ -1,5 +1,5 @@
 fastapi[standard]
-chromadb>=0.4.22
+chromadb==0.4.22
 langchain==0.3.27
 langchain-ollama==0.3.10
 langchain-community==0.3.31
