@@ -3,14 +3,14 @@ import { Ollama } from "ollama";
 
 const app = express();
 
-const model = new Ollama();
+const ollama = new Ollama();
 
 app.get('/', async (request, response) => {
   response.type('text/plain');
 
-  const modelResponse = await model.generate({
-    prompt: "Can you simply say 'test'?",
-    model: 'llama3.2'
+  const modelResponse = await ollama.generate({
+    model: 'llama3.2',
+    prompt: "Can you simply say 'test'?"
   });
 
   console.log("\nAIMessage object response:\n")

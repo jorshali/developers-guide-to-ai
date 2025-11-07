@@ -3,11 +3,11 @@ import requests
 from common.document import Document
 
 
-def load_local_readme_document(filename: str):
-  with open(filename, 'r') as f:
-    readme_documentation = f.read()
+def load_local_document(full_file_path: str):
+  with open(full_file_path, 'r') as f:
+    document_text = f.read()
 
-    return readme_documentation
+    return document_text
 
 
 def download_remote_document(owner="jorshali", repo="developers-guide-to-ai", branch="main", filename="README.md") -> Document:
