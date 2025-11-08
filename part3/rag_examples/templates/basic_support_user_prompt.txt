@@ -6,5 +6,4 @@
 {% endfor %}
 </context>
 
-
 Question: {{question}}

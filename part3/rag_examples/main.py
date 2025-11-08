@@ -36,7 +36,7 @@ class ChatRequest(BaseModel):
 
 class ChatContext():
   def __init__(self):
-    self.vector_store: MultiDocumentVectorStore = None
+    self.readme_vector_store: MultiDocumentVectorStore = None
 
 
 def load_vector_store():
@@ -58,17 +58,9 @@ def load_vector_store():
 
 chat_context = ChatContext()
 
+app = FastAPI()
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-  # initialize models and vector stores
-  chat_context.vector_store = load_vector_store()
-
-  yield
-
-  # Clean up and release the resources
-
-app = FastAPI(lifespan=lifespan)
+readme_vector_store = load_vector_store()
 
 app.add_middleware(
   CORSMiddleware,
@@ -113,7 +105,7 @@ def handle_post(chat_request: ChatRequest):
 
   conversation_history.trim_history()
 
-  documents = chat_context.vector_store.query(question)
+  documents = readme_vector_store.query(question)
 
   conversation_history.add_message({
     "role": "user",

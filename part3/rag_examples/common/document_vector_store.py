@@ -2,7 +2,7 @@ import chromadb
 
 from chromadb import Collection
 from typing import List
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
 
 from chromadb.utils.embedding_functions.ollama_embedding_function import (
   OllamaEmbeddingFunction
@@ -24,8 +24,8 @@ class DocumentVectorStore:
     )
 
     splitter = RecursiveCharacterTextSplitter.from_language(
-      language="markdown",
-      chunk_size=1200
+      language=Language.MARKDOWN,
+      chunk_size=1500
     )
 
     chunks = splitter.split_text(document_text)
@@ -35,7 +35,8 @@ class DocumentVectorStore:
       ids=[f"doc{chunk_idx + 1}" for chunk_idx, chunk in enumerate(chunks)]
     )
 
-  def query(self, question: str) -> List[str]:
-    results = self.collection.query(query_texts=[question], n_results=3)
+  def query(self, question: str, n_results=3) -> List[str]:
+    results = self.collection.query(
+      query_texts=[question], n_results=n_results)
 
     return results.get('documents')[0]

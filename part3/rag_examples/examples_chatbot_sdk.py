@@ -1,8 +1,7 @@
-
+from pathlib import Path
 from ollama import chat
 from jinja2 import Environment, FileSystemLoader
 
-from common.document_retrieval import load_local_document
 from common.document_vector_store import DocumentVectorStore
 
 env = Environment(
@@ -14,8 +13,10 @@ user_prompt = env.get_template("basic_support_user_prompt.txt")
 
 print("\nLoading the README file, please wait just a moment...\n")
 
+document_text = Path('../../README.md').read_text()
+
 readme_vector_store: DocumentVectorStore = DocumentVectorStore(
-  load_local_document('../../README.md'))
+  document_text)
 
 question = input("""Welcome to the Developer's Guide to AI Examples!
 ----------------------------------------------------------

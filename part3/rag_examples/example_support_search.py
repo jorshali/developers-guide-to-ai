@@ -1,9 +1,18 @@
 
+from pathlib import Path
 from ollama import chat
 from jinja2 import Environment, FileSystemLoader
 
 from common.document_vector_store import DocumentVectorStore
-from common.document_retrieval import load_local_document
+
+
+document_text = Path('../../README.md').read_text()
+
+readme_vector_store = DocumentVectorStore(document_text)
+
+question = "Why is Ollama preferred to hosted APIs for the examples?"
+
+documents = readme_vector_store.query(question, n_results=1)
 
 env = Environment(
   loader=FileSystemLoader(searchpath="templates")
@@ -12,13 +21,6 @@ env = Environment(
 system_prompt = env.get_template("basic_support_system_prompt.txt")
 user_prompt = env.get_template("basic_support_user_prompt.txt")
 
-readme_vector_store = DocumentVectorStore(
-  load_local_document('../../README.md'))
-
-question = "Why is Ollama preferred to hosted APIs for the examples?"
-
-documents = readme_vector_store.query(question)
-
 messages = [
   {
     "role": "system",
@@ -26,7 +28,7 @@ messages = [
   },
   {
     "role": "user",
-    "content": user_prompt.render(context='\n'.join(documents), question=question)
+    "content": user_prompt.render(documents=documents, question=question)
   }
 ]
 
@@ -43,7 +45,4 @@ for chunk in response:
   if chunk.message.content:
     print(chunk.message.content, end="", flush=True)
 
-print("\nProcessing...\n\n")
-
-for chunk in response:
-  print(chunk, end="", flush=True)
+print()
