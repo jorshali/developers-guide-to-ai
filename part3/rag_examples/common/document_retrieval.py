@@ -1,13 +1,26 @@
 import requests
-
+from pathlib import Path
+from abc import ABC, abstractmethod
 from common.document import Document
 
 
-def load_local_readme_document(filename: str):
-  with open(filename, 'r') as f:
-    readme_documentation = f.read()
+class DocumentLoader(ABC):
+  @abstractmethod
+  def load_document(self) -> str:
+    ...
 
-    return readme_documentation
+
+class LocalFileDocumentLoader(DocumentLoader):
+  def __init__(self, full_file_path: str):
+    self.full_file_path = full_file_path
+
+  def load_document(self):
+    document_text = Path(self.full_file_path).read_text()
+
+    return Document(
+      source_url=f'file:///{self.full_file_path}',
+      content=document_text
+    )
 
 
 def download_remote_document(owner="jorshali", repo="developers-guide-to-ai", branch="main", filename="README.md") -> Document:

@@ -51,7 +51,7 @@ We focus on practical applications using pre-trained AI models (LLMs and more) t
 
 # Pre-trained AI Models
 
-The concepts and practical approaches presented in the Developer's Guide to AI are generally AI model agnostic, but we will be calling Ollama models in many of the examples.  Ollama provides a local API to open models that will only cost you the power required to power your laptop.  While some examples show how you can connect to hosted models (e.g. OpenAI APIs), keep in mind that to use these models you will need to register for an API key and pay for usage.
+The concepts and practical approaches presented in the Developer's Guide to AI are generally AI model agnostic, but we will be calling Ollama models in many of the examples.  Ollama provides a local API to open models that will only cost you the power required to power your laptop.  While some examples show how you can connect to hosted models (such as OpenAI APIs), keep in mind that to use these models you will need to register for an API key and pay for usage.
 
 # Prerequisites
 

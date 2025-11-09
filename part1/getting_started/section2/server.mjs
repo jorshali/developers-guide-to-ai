@@ -7,16 +7,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const model = new Ollama();
+const ollama = new Ollama();
 
 app.post('/', async (request, response) => {
   response.type('text/plain');
 
   const body = request.body;
 
-  const streamIterator = await model.generate({
-    prompt: body.question,
+  const streamIterator = await ollama.generate({
     model: 'llama3.2',
+    prompt: body.question,
     stream: true
   });
 
