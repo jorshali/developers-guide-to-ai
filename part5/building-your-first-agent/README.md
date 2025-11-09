@@ -1,12 +1,10 @@
-# Building an MCP Server
+# Building Your First Agent
 
-This directory contains examples for building a Multi-Client Protocol (MCP) server.
+This directory contains examples for building your first AI agent.
 
 ## Folders and Files
-- `mongo-client.py`: MongoDB client for managing expenses.
-- `myExpenseManager-mcp-client.py`: MCP client for the expense manager server.
-- `myExpenseManager-mcp-server.py`: MCP server for the expense manager.
-- `mySpecialCalculator-mcp-server.py`: MCP server for a special calculator.
+- `01-helloAgents.py`: Introduction to agents with a simple example.
+- `02.findingEarningsReport.py`: Agent workflow for finding company earnings reports.
 - `requirements.txt`: Python dependencies for this project.
 
 # Setting up the environment
@@ -18,7 +16,7 @@ Once you have set up the virtual environment and installed the required packages
 For example, to set up the virtual environment, you can use the following commands:
 
 ```bash
-pyenv virtualenv 3.12.0 developers-guide-to-ai-part5-mcp-server
-pyenv activate developers-guide-to-ai-part5-mcp-server
+pyenv virtualenv 3.12.0 developers-guide-to-ai-part5-first-agent
+pyenv activate developers-guide-to-ai-part5-first-agent
 pip install -r requirements.txt
 ```

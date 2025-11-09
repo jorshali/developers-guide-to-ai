@@ -24,7 +24,7 @@ All the code and examples used in **Part 4: Fine-tuning** of the book are availa
 
 # Setting up the environment
 
-To set up the environment, you can use `pyenv` and `pyenv-virtualenv` to create a virtual environment for the project. After setting up the virtual environment, you can install the required packages using `pip`.
+To set up the environment, you can use `pyenv` and `pyenv-virtualenv` to create a virtual environment for the project. After setting up the virtual environment, you can install the required packages using `pip install -r requirements.txt`.
 
 Once you have set up the virtual environment and installed the required packages, you can activate the virtual environment and start a Jupyter notebook server. The notebooks can then be accessed through a web browser.
 
