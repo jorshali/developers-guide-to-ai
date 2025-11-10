@@ -1,5 +1,5 @@
 from jinja2 import Environment, FileSystemLoader
-from ollama import chat, ChatResponse
+from ollama import chat
 from pydantic import BaseModel
 from typing import List
 
