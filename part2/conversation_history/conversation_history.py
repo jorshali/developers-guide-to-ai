@@ -1,7 +1,5 @@
 import tiktoken
 
-from ollama import chat
-
 from messages import Messages, Message
 
 

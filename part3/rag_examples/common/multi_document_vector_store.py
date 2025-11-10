@@ -12,26 +12,6 @@ from chromadb.utils.embedding_functions.ollama_embedding_function import (
 
 class MultiDocumentVectorStore:
   def __init__(self, documents: List[Document]):
-    self.collection: Collection = self._initialize_vector_store(documents)
-
-  def query(self, question: str):
-    results = self.collection.query(query_texts=[question], n_results=3)
-
-    documents = results.get('documents')[0]
-    metadatas = results.get('metadatas')[0]
-
-    document_with_metadata: List[Document] = []
-
-    for doc_idx, document in enumerate(documents):
-      document_with_metadata.append(Document(
-        source_url=metadatas[doc_idx].get('source_url'),
-        content=document
-      ))
-
-    return document_with_metadata
-
-  def _initialize_vector_store(self, documents: List[Document]) -> Collection:
-    # Initialize embeddings and vector store
     embedding_function = OllamaEmbeddingFunction(
       url="http://localhost:11434",
       model_name="mxbai-embed-large"
@@ -39,29 +19,36 @@ class MultiDocumentVectorStore:
 
     client = chromadb.Client()
 
-    collection: Collection = client.create_collection(
+    self.collection: Collection = client.create_collection(
       name="examples_readme",
       embedding_function=embedding_function,
     )
 
+    splitter = RecursiveCharacterTextSplitter.from_language(
+      language="markdown", chunk_size=1500)
+
     for doc_idx, document in enumerate(documents):
-      document_chunks = self._chunk_document(document.content)
+      document_chunks = splitter.split_text(document.content)
 
       for chunk_idx, document_chunk in enumerate(document_chunks):
-        collection.add(
+        self.collection.add(
           documents=document_chunk,
           ids=f"doc_{doc_idx + 1}_{chunk_idx + 1}",
           metadatas={"source_url": document.source_url}
         )
 
-    return collection
+  def query(self, question: str):
+    results = self.collection.query(query_texts=[question], n_results=3)
 
-  def _chunk_document(self, document: str) -> List[str]:
-    splitter = RecursiveCharacterTextSplitter.from_language(
-      language="markdown", chunk_size=1200)
+    document_chunk_results = results.get('documents')[0]
+    document_chunk_metadatas = results.get('metadatas')[0]
 
-    document_chunks = splitter.split_text(document)
+    documents: List[Document] = []
 
-    print("Number of chunks: ", len(document_chunks))
+    for result_idx, document_chunk in enumerate(document_chunk_results):
+      documents.append(Document(
+        source_url=document_chunk_metadatas[result_idx].get('source_url'),
+        content=document_chunk
+      ))
 
-    return document_chunks
+    return documents

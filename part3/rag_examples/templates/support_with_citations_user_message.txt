@@ -3,7 +3,7 @@
 <document>
 {{ document.content }}
 
-Source URL:  {{ document.source_url }}
+<source_url>{{ document.source_url }}</source_url>
 </document>
 {% endfor %}
 </context>

@@ -1,4 +1,4 @@
-from messages import ChatRequest
+from chat_request import ChatRequest
 from conversation_history_example_data import conversation_history_example_data
 
 chat_request = ChatRequest(

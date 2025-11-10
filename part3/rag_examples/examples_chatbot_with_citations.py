@@ -7,9 +7,9 @@ env = Environment(
   loader=FileSystemLoader(searchpath="templates")
 )
 
-system_prompt = env.get_template(
-  "support_with_citations_system_prompt.txt")
-user_prompt = env.get_template("support_with_citations_user_prompt.txt")
+system_message = env.get_template(
+  "support_with_citations_system_message.txt")
+user_message = env.get_template("support_with_citations_user_message.txt")
 
 print("\nLoading the README file, please wait just a moment...\n")
 
@@ -44,11 +44,11 @@ while question != "\\bye":
     messages = [
       {
         "role": "system",
-        "content": system_prompt.render()
+        "content": system_message.render()
       },
         {
         "role": "user",
-        "content": user_prompt.render(documents=documents, question=question)
+        "content": user_message.render(documents=documents, question=question)
       }
     ]
 

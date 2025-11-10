@@ -1,11 +1,10 @@
-from contextlib import asynccontextmanager
 from typing import Literal, List
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from ollama import chat
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, Template
 
 from pydantic import BaseModel
 
@@ -17,9 +16,10 @@ env = Environment(
   loader=FileSystemLoader(searchpath="templates")
 )
 
-system_prompt = env.get_template(
-  "support_with_history_system_prompt.txt")
-user_prompt = env.get_template("support_with_citations_user_prompt.txt")
+system_message: Template = env.get_template(
+  "support_with_history_system_message.txt")
+user_message: Template = env.get_template(
+  "support_with_citations_user_message.txt")
 
 print("\nLoading the README file, please wait just a moment...\n")
 
@@ -34,13 +34,8 @@ class ChatRequest(BaseModel):
   history: List[Message] = []
 
 
-class ChatContext():
-  def __init__(self):
-    self.readme_vector_store: MultiDocumentVectorStore = None
-
-
 def load_vector_store():
-  print("\nLoading the README file, please wait just a moment...\n")
+  print("\nLoading README files, please wait just a moment...\n")
 
   readme_filenames = [
     'README.md',
@@ -56,8 +51,6 @@ def load_vector_store():
   return MultiDocumentVectorStore(readme_documents)
 
 
-chat_context = ChatContext()
-
 app = FastAPI()
 
 readme_vector_store = load_vector_store()
@@ -72,6 +65,8 @@ app.add_middleware(
 
 
 def generate_stream(conversation_history: ConversationHistory):
+  print(conversation_history.get_messages())
+
   result = chat(
     stream=True,
     model="llama3.2",
@@ -90,16 +85,14 @@ def handle_post(chat_request: ChatRequest):
 
   question = chat_request.question
 
-  system_message = {
+  conversation_history = ConversationHistory({
     "role": "system",
-    "content": system_prompt.render()
-  }
-
-  conversation_history = ConversationHistory(system_message)
+    "content": system_message.render()
+  })
 
   for msg in chat_request.history:
     conversation_history.add_message({
-      'role': 'user',
+      'role': 'user',  # this would usually be msg.role, but this is a workaround for Ollama as it does not consider assistant history as well as user history
       'content': msg.content
     })
 
@@ -109,7 +102,7 @@ def handle_post(chat_request: ChatRequest):
 
   conversation_history.add_message({
     "role": "user",
-    "content": user_prompt.render(documents=documents, question=question)
+    "content": user_message.render(documents=documents, question=question)
   })
 
   return StreamingResponse(

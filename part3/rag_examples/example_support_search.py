@@ -18,17 +18,17 @@ env = Environment(
   loader=FileSystemLoader(searchpath="templates")
 )
 
-system_prompt = env.get_template("basic_support_system_prompt.txt")
-user_prompt = env.get_template("basic_support_user_prompt.txt")
+system_message = env.get_template("basic_support_system_message.txt")
+user_message = env.get_template("basic_support_user_message.txt")
 
 messages = [
   {
     "role": "system",
-    "content": system_prompt.render()
+    "content": system_message.render()
   },
   {
     "role": "user",
-    "content": user_prompt.render(documents=documents, question=question)
+    "content": user_message.render(documents=documents, question=question)
   }
 ]
 

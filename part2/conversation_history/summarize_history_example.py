@@ -1,18 +1,10 @@
 import json
 
 from ollama import chat
-from jinja2 import Environment, FileSystemLoader
 
 from conversation_history import ConversationHistory
 from conversation_history_example_data import conversation_history_example_data
 from summarize_history import summarize_history
-
-env = Environment(
-  loader=FileSystemLoader("templates")
-)
-
-system_template = env.get_template('summarize_history_system_prompt.txt')
-user_template = env.get_template('summarize_history_system_prompt.txt')
 
 history = ConversationHistory(
   {'role': 'system', 'content': """You are a helpful AI Support Representative.

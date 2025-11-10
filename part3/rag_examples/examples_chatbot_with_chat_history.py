@@ -10,9 +10,9 @@ env = Environment(
   loader=FileSystemLoader(searchpath="templates")
 )
 
-system_prompt = env.get_template(
-  "support_with_history_system_prompt.txt")
-user_prompt = env.get_template("support_with_citations_user_prompt.txt")
+system_message = env.get_template(
+  "support_with_history_system_message.txt")
+user_message = env.get_template("support_with_citations_user_message.txt")
 
 print("\nLoading the README file, please wait just a moment...\n")
 
@@ -42,12 +42,10 @@ What would you like to know?  Ask me about setup, running, or troubleshooting.  
 
 >>> """)
 
-system_message = {
+conversation_history = ConversationHistory({
   "role": "system",
-  "content": system_prompt.render()
-}
-
-conversation_history = ConversationHistory(system_message)
+  "content": system_message.render()
+})
 
 while question != "\\bye":
   if question:
@@ -55,7 +53,7 @@ while question != "\\bye":
 
     conversation_history.add_message({
       "role": "user",
-      "content": user_prompt.render(documents=documents, question=question)
+      "content": user_message.render(documents=documents, question=question)
     })
 
     conversation_history.trim_history()

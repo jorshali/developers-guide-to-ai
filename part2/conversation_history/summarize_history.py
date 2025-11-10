@@ -7,8 +7,8 @@ env = Environment(
   loader=FileSystemLoader("templates")
 )
 
-system_template = env.get_template('summarize_history_system_prompt.txt')
-user_template = env.get_template('summarize_history_user_prompt.txt')
+system_template = env.get_template('summarize_history_system_message.txt')
+user_template = env.get_template('summarize_history_user_message.txt')
 
 
 def summarize_history(history: ConversationHistory, max_words=300):
