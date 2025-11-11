@@ -38,3 +38,4 @@ doc_chroma_db
 .vite
 .cursor
 share
+*.arrow
