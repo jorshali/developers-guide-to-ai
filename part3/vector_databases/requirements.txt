@@ -1,5 +1,4 @@
 chromadb==1.2.1
-requests==2.31.0
 numpy==1.26.4
 pandas==2.3.3
 sentence-transformers==5.1.2

@@ -57,7 +57,7 @@ The concepts and practical approaches presented in the Developer's Guide to AI a
 
 - Basic knowledge of JavaScript
 - [Node.js](https://nodejs.org/) (Version 24.8.0)
-- [Python](https://www.python.org/) (Version 3.12)
+- [Python](https://www.python.org/) (Version 3.13.7)
 - [Git](https://git-scm.com/)
 
 Recommended:
@@ -181,12 +181,12 @@ Follow the instructions found here to setup `pyenv` for your environment:
 
 [Install pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv?tab=readme-ov-file#installation)
 
-## Install Python version 3.12.11
+## Install Python version 3.13.7
 
 The following command installs the necessary Python version using `pyenv`:
 
 ```
-pyenv install 3.12.11
+pyenv install 3.13.7
 ```
 
 ## Virtual Environment Setup
@@ -194,7 +194,7 @@ pyenv install 3.12.11
 Setup your virtual environment with the installed Python version:
 
 ```
-$ pyenv virtualenv 3.12.11 developers-guide-to-ai-part1
+$ pyenv virtualenv 3.13.7 developers-guide-to-ai-part1
 ```
 
 Each part of the book has a specific set of dependencies for its examples defined in a `requirements.txt` file.  When you get to a new part, you can create a specific environment by running the command above and simply changing the `part` number.
