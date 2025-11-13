@@ -5,7 +5,7 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
 
 # The sentences to encode
 sentences = [
-    "Sony Wireless Noise-Cancelling Headphones",
+    "Sony Wireless Noise-Canceling Headphones",
     "Canon Professional DSLR Camera Kit",
     "Jenson Wireless Earbuds Pro",
     "Panasonic Wireless Noise-Reduction Headphones",
@@ -24,4 +24,5 @@ similarities = model.similarity(embeddings[idx_to_compare], embeddings)
 print(sentences[idx_to_compare])
 
 for idx, embedding in enumerate(embeddings):
-  print(f"- {sentences[idx]}, Score: {similarities[idx_to_compare][idx]:.4f}")
+  print(
+    f"- {sentences[idx]}, Score: {similarities[idx_to_compare][idx]:.4f}")

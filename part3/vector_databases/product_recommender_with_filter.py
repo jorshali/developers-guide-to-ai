@@ -177,7 +177,7 @@ def main():
   user = User("john_doe")
 
   # Add some purchases to the user's history
-  # Simulate a user who bought a gaming laptop and noise-cancelling headphones
+  # Simulate a user who bought a gaming laptop and noise-canceling headphones
   purchase_ids = ['E005', 'E002']
   for pid in purchase_ids:
     user.add_purchase(recommender.product_details[pid])

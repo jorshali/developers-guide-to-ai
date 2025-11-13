@@ -3,7 +3,7 @@ from sentence_transformers import SentenceTransformer
 models_to_compare = ["all-MiniLM-L6-v2", "paraphrase-MiniLM-L6-v2"]
 
 products_with_category = [
-  ("Sony Wireless Noise-Cancelling Headphones", "Electronics"),
+  ("Sony Wireless Noise-Canceling Headphones", "Electronics"),
   ("Canon Professional DSLR Camera Kit", "Electronics"),
   ("Jenson Wireless Earbuds Pro", "Electronics"),
   ("Heavy Ski Jacket", "Apparel"),
