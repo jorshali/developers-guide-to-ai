@@ -31,7 +31,7 @@ If your issue results in a change to the book text, a change to the examples, or
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
 - [Parts Overview](#parts-overview)
-- [Python Environments (Recommended)](#python-environments-recommended)
+- [Python Environments](#python-environments)
 
 # About the Book
 
