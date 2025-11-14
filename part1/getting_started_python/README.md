@@ -4,62 +4,41 @@
 
 Porting the Getting Started example to Python.
 
-## Quick Start
+## Prerequisites
 
 The following steps will get you up and running on your machine.
 
-0. Install Ollama and run:
+Install Ollama (if necessary):
 
-- Download and install: https://ollama.com
-- Verify the install and start Llama in a terminal window:
+- Follow the instructions in: [Install Ollama](https://github.com/jorshali/developers-guide-to-ai/blob/main/README.md#install-ollama)
 
-```
-~ % ollama run llama3.2
-```
+Install Python (if necessary):
 
-1. Clone this project into a local directory:
+- Follow the instructions in: [Install Python](https://github.com/jorshali/developers-guide-to-ai/blob/main/README.md#install-python-if-necessary)
 
-```
-~ % git clone <url>
-```
-
-2. Install Python (if necessary)
-
-Follow the instructions in:
-
-[Python Virtual Environment](https://github.com/jorshali/developers-guide-to-ai/blob/main/README.md#python-environments)
-
-
-3. Install Python modules
-
-- Navigate to the project `part1/getting_started_python` directory in your terminal and run:
+Navigate to the project (e.g. `part1/getting_started_python`) directory in your terminal and run:
 
 ```
-~/developers-guide-to-ai/part1/getting_started_python % pip install -r requirements.txt
+~/developers-guide-to-ai/part1/getting_started_python % python -m pip install -r requirements.txt
 ```
 
-- Navigate to the project `part1/client` directory in your terminal and run:
+### Start the Server
 
-```
-~/developers-guide-to-ai/part1/client % npm install
-```
-
-4.  Launch the server
-
-- In a terminal, navigate to the `part1/getting_started_python` directory and run the following command:
+In a terminal, navigate to the project directory (e.g. `part1/getting_started_python`) and run the following command:
 
 ```
 ~/developers-guide-to-ai/part1/getting_started_python % fastapi dev main.py
 ```
 
-5.  Launch the client
+### Start the Client
 
-- In a separate terminal, navigate to the `part1/client` directory and run the following commands:
+In a separate terminal, navigate to the `part1/client` directory and run the following commands:
 
 ```
+~/developers-guide-to-ai/part1/client % npm install
 ~/developers-guide-to-ai/part1/client % npm run dev
 ```
 
-6. Open your web browser and visit: http://localhost:5173
+Open your web browser and visit: http://localhost:5173
 
-7. Input a question and click `Call your API` to see the response streamed from Llama 3.2 3B
+Input a question and click `Call your API` to see the response streamed from Llama 3.2 3B.
