@@ -25,20 +25,10 @@ The following steps will get you up and running on your machine.
 
 2. Install Python (if necessary)
 
-It's recommended that you setup a virtual environment before installing Python or Python modules.  You can see how to do that here:
+Follow the instructions in:
 
-[Python Virtual Environment](https://github.com/jorshali/developers-guide-to-ai/blob/main/README.md#virtual-environment-setup)
+[Python Virtual Environment](https://github.com/jorshali/developers-guide-to-ai/blob/main/README.md#python-environments)
 
-If you would rather install Python globally, follow the instructions here:
-
-- Download and install: https://www.python.org/downloads/
-- Verify the install in your terminal:
-
-```
-~ % python -V
-```
-
-- If the installation succeeded, the version will print
 
 3. Install Python modules
 

@@ -57,13 +57,12 @@ The concepts and practical approaches presented in the Developer's Guide to AI a
 
 - Basic knowledge of JavaScript
 - [Node.js](https://nodejs.org/) (Version 24.8.0)
-- [Python](https://www.python.org/) (Version 3.13.7)
+- [Python](#python-environments) (Version 3.13.7)
 - [Git](https://git-scm.com/)
 
 Recommended:
 
 - [Homebrew (Mac)](https://brew.sh)
-- [Python Virtual Environment](#virtual-environment-setup)
 
 # About This README
 
@@ -104,7 +103,7 @@ This part provides the foundation for working with AI, featuring both JavaScript
 | Project | Description |
 | --- | --- |
 | [part1/client/](part1/client/) | A React-based frontend application that consumes the LLM API. It demonstrates how to handle streaming responses from the server and manage UI states, providing a simple interface to ask questions and see the LLM's response in real-time. |
-| [part1/getting_started/](part1/getting_started/) | Contains two Express.js server implementations. `section1` provides a basic REST service that interfaces with a local LLM using LangChain. `section2` enhances this by implementing real-time streaming of LLM responses, showing how to create a more responsive user experience. |
+| [part1/getting_started/](part1/getting_started/) | Contains two Express.js server implementations. `section1` provides a basic REST service that interfaces with a local LLM using the Ollama SDK. `section2` enhances this by implementing real-time streaming of LLM responses, showing how to create a more responsive user experience. |
 | [part1/getting_started_python/](part1/getting_started_python/) | A FastAPI-based Python alternative to the JavaScript server. It showcases Python's asynchronous capabilities for LLM interactions, including streaming support, and demonstrates how to integrate with the same LLM backend using Python's ecosystem. |
 
 ---
@@ -116,9 +115,10 @@ This part dives deeper into LLM capabilities with practical examples of prompt e
 | Project | Description |
 | --- | --- |
 | [part2/basic_examples/](part2/basic_examples/) | A collection of Python scripts demonstrating fundamental prompt engineering concepts. It includes examples of temperature settings, tokenization, prompt templates, and guard rails to control LLM behavior. |
-| [part2/basic_examples_javascript/](part2/basic_examples_javascript/) | JavaScript examples covering chunking, creating embeddings, and tokenization. These scripts show how to perform common NLP tasks in a JavaScript environment. |
-| [part2/first_call_chain/](part2/first_call_chain/) | A simple FastAPI server that demonstrates how to create a basic LLM chain using LangChain. It shows how to combine a prompt template with an LLM to answer questions. |
+| [part3/client/](part3/client/) | A React-based chat interface that interacts with a RAG API. It supports conversational history and displays streaming responses from the backend. |
+| [part2/conversation_history/](part2/conversation_history/) | A set of Python scripts that demonstrate conversation history concepts.  Includes a simple FastAPI server implementation for a simple conversational chatbot using the Ollama SDK. |
 | [part2/structured_output/](part2/structured_output/) | Python scripts that illustrate how to get structured data (JSON) from an LLM. It includes examples of sentiment analysis and data extraction using both the Ollama SDK and the `instructor` library. |
+| [part2/structured_output_javascript/](part2/basic_examples_javascript/) | A JavaScript example that illustrates how to get structured data (JSON) from an LLM by extracting contact information from an email. |
 
 ---
 
@@ -128,13 +128,8 @@ This part focuses on building advanced AI applications using Retrieval-Augmented
 
 | Project | Description |
 | --- | --- |
-| [part3/advanced_rag/](part3/advanced_rag/) | An advanced RAG (Retrieval-Augmented Generation) implementation that uses a combination of BM25 and vector search (ensemble retriever) along with multi-query retrieval to enhance search results. It also includes a reranker to improve the relevance of the retrieved documents. |
-| [part3/basic_examples/](part3/basic_examples/) | A Python script for experimenting with different text chunking strategies using LangChain's `RecursiveCharacterTextSplitter`. |
 | [part3/client/](part3/client/) | A React-based chat interface that interacts with a RAG API. It supports conversational history and displays streaming responses from the backend. |
-| [part3/conversational_rag_example/](part3/conversational_rag_example/) | A FastAPI server that implements a conversational RAG (Retrieval-Augmented Generation) system. It uses a vector store to retrieve relevant documents and maintains conversation history to provide context-aware responses. |
-| [part3/parent_document_retriever_rag/](part3/parent_document_retriever_rag/) | A RAG (Retrieval-Augmented Generation) implementation that uses the `ParentDocumentRetriever` to handle large documents. This approach splits documents into smaller chunks for embedding and retrieval, but returns the larger parent document for better context. |
-| [part3/rag_examples/](part3/rag_examples/) | A set of Python scripts that demonstrate different ways to build a RAG-based chatbot. It includes examples using both LangChain and the Ollama SDK. |
-| [part3/simple_rag_javascript/](part3/simple_rag_javascript/) | A Node.js server that implements a simple RAG system in JavaScript. It uses an in-memory vector store and the `ParentDocumentRetriever` to answer questions based on a set of articles. |
+| [part3/rag_examples/](part3/rag_examples/) | A set of Python scripts that demonstrate RAG concepts by experimenting with chunking strategies and building various versions of a simple chatbot grounded on the example documentation.  Also includes a FastAPI server for the chatbot that implements a conversational RAG (Retrieval-Augmented Generation) system. The examples combine the Ollama SDK with a vector store to retrieve relevant documents to provide context-aware responses. |
 | [part3/vector_databases/](part3/vector_databases/) | A collection of Python scripts that showcase various use cases for vector databases, including document search, product recommendation, and interactive product search with filtering. |
 
 ---
@@ -167,13 +162,51 @@ This part explores the concept of AI agents, which can use tools to interact wit
 | [part5/02.findingEarningsReport.py](part5/02.findingEarningsReport.py) | This script showcases a more advanced agent that acts as a financial analyst. It uses tools to find and compare the quarterly revenues of different companies. |
 | [part5/mcp/](part5/mcp/) | A project that demonstrates the Multi-Agent Collaboration Protocol (MCP). It includes an Express.js server with some API endpoints and an MCP server that exposes these endpoints as tools for agents to use. It also contains an example of an expense tracker agent that interacts with a MongoDB database. |
 
-# Python Environments \[Recommended\]
+# Python Environments
 
-It's recommended that you setup a Python virtual environment for running the Python examples.  To setup the environment, you can use `pyenv` and `pyenv-virtualenv` to create a virtual environment for each project. After setting up the virtual environment, you can install the required packages using `pip`.
+When installing Python, you have options. The simplest option is to install Python globally (option 1), but it's recommended that you setup a Python virtual environment for running the Python examples (option 2).
 
-_Note:_  There are many tools for creating virtual environments in Python.  Feel free to choose your own preferred option.
+Setting up a virtual environment is more involved, but will save you some headaches when you are installing different versions of Python and libraries for different projects. You can always start with option 1, and move on to option 2 as needed.
 
-## Install `pyenv` and `pyenv-virtualenv`
+## Option 1: Install Python Globally (if necessary)
+
+If you would rather install Python globally, follow the instructions here:
+
+Download and install: https://www.python.org/downloads/
+
+_Note:_  All examples in this book were tested with Python 3.13.7.
+
+Verify the install in your terminal:
+
+```
+ ~/ai-for-devs % python --version
+```
+
+If the installation was successful, the version will print.
+
+```
+Python 3.13.7
+```
+
+On a Mac or Linux, or if you are using a specific version of Python, you may need to substitute the `python` command with `python3`:
+
+```
+ ~/ai-for-devs % python3 --version
+```
+
+On Windows, you can also use the Python launcher:
+
+```
+C:\> py --version
+```
+
+Make sure you use the proper `python` command for your installation when running the examples throughout the book.
+
+## Option 2: Install `pyenv` and `pyenv-virtualenv`
+
+To set up an isolated environment for this project, you can use `pyenv` and `pyenv-virtualenv` to create a virtual environment for each part of the book. After setting up the virtual environment, you can install the required packages using `pip`.
+
+_Note:_  There are many tools for creating virtual environments in Python (such as `venv`, `conda`, and others). Feel free to choose your preferred option. Feel free to choose your own preferred option. The examples here use `pyenv` and `pyenv-virtualenv`.`
 
 Follow the instructions found here to setup `pyenv` for your environment:
 
@@ -181,32 +214,44 @@ Follow the instructions found here to setup `pyenv` for your environment:
 
 [Install pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv?tab=readme-ov-file#installation)
 
-## Install Python version 3.13.7
+### Install Python version 3.13.7
 
 The following command installs the necessary Python version using `pyenv`:
 
 ```
-pyenv install 3.13.7
+ ~/ai-for-devs % pyenv install 3.13.7
 ```
 
-## Virtual Environment Setup
+### Virtual Environment Setup
 
 Setup your virtual environment with the installed Python version:
 
 ```
-$ pyenv virtualenv 3.13.7 developers-guide-to-ai-part1
+~/ai-for-devs % pyenv virtualenv 3.13.7 developers-guide-to-ai-part1
 ```
 
-Each part of the book has a specific set of dependencies for its examples defined in a `requirements.txt` file.  When you get to a new part, you can create a specific environment by running the command above and simply changing the `part` number.
+Each part of the book has a specific set of dependencies for its examples defined in a `requirements.txt` file.  When you get to a new part, you can create a separate environment by running the command above and simply changing the `part` number.
 
 Now you need to activate your virtual environment:
 
 ```
-$ pyenv activate developers-guide-to-ai-part1
+~/ai-for-devs % pyenv activate developers-guide-to-ai-part1
 ```
 
-Now that you've activate the virtual environment, you can navigate to the example directory and install the required packages using `pip`:
+Verify the Python version inside the environment:
 
 ```
-pip install -r requirements.txt
+~/ai-for-devs % python --version
+```
+
+You should see:
+
+```
+Python 3.13.7
+```
+
+Now that you've activated the virtual environment, you can navigate to the example directory and install the required packages using `pip`:
+
+```
+~/ai-for-devs % python -m pip install -r requirements.txt
 ```
