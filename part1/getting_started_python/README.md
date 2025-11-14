@@ -41,4 +41,4 @@ In a separate terminal, navigate to the `part1/client` directory and run the fol
 
 Open your web browser and visit: http://localhost:5173
 
-Input a question and click `Call your API` to see the response streamed from Llama 3.2 3B.
+Input a question and click `Call your API` to see the response streamed from Llama 3.2.

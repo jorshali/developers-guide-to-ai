@@ -2,14 +2,14 @@
 
 ## Getting Started Client
 
-This is the client for Part 3.  You can start the client with the following:
+This is the client for Part 2.  It provides a UI for interacting with the conversational chatbot.
 
-1.  Launch the client
+## Start the client
 
-- In a terminal, navigate to the `part3/client` directory and run the following commands:
+In a terminal, navigate to the `part2/client` directory and run the following commands:
 
 ```
-~/developers-guide-to-ai/part3/client % npm run dev
+~/developers-guide-to-ai/part2/client % npm run dev
 ```
 
-2. Open your web browser and visit: http://localhost:5173
+Open your web browser and visit: http://localhost:5173
