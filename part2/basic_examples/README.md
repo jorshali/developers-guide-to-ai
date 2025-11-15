@@ -19,7 +19,7 @@ Install Python (if necessary):
 Navigate to the project (e.g. `part2/basic_examples`) directory in your terminal and run:
 
 ```
-~/developers-guide-to-ai/part2/basic_examples % python -m pip install -r requirements.txt
+~/ai-for-devs/part2/basic_examples % python -m pip install -r requirements.txt
 ```
 
 ## Run a Python Script
@@ -27,5 +27,5 @@ Navigate to the project (e.g. `part2/basic_examples`) directory in your terminal
 In a terminal, navigate to the project directory (e.g. `part2/basic_examples`) and run the following command:
 
 ```
-~/developers-guide-to-ai/part2/basic_examples % python tokenization.py
+~/ai-for-devs/part2/basic_examples % python tokenization.py
 ```

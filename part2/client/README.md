@@ -9,7 +9,7 @@ This is the client for Part 2.  It provides a UI for interacting with the conver
 In a terminal, navigate to the `part2/client` directory and run the following commands:
 
 ```
-~/developers-guide-to-ai/part2/client % npm run dev
+~/ai-for-devs/part2/client % npm run dev
 ```
 
 Open your web browser and visit: http://localhost:5173

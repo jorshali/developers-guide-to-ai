@@ -19,7 +19,7 @@ Install Python (if necessary):
 Navigate to the project (e.g. `part1/getting_started_python`) directory in your terminal and run:
 
 ```
-~/developers-guide-to-ai/part1/getting_started_python % python -m pip install -r requirements.txt
+~/ai-for-devs/part1/getting_started_python % python -m pip install -r requirements.txt
 ```
 
 ### Start the Server
@@ -27,7 +27,7 @@ Navigate to the project (e.g. `part1/getting_started_python`) directory in your 
 In a terminal, navigate to the project directory (e.g. `part1/getting_started_python`) and run the following command:
 
 ```
-~/developers-guide-to-ai/part1/getting_started_python % fastapi dev main.py
+~/ai-for-devs/part1/getting_started_python % fastapi dev main.py
 ```
 
 ### Start the Client
@@ -35,8 +35,8 @@ In a terminal, navigate to the project directory (e.g. `part1/getting_started_py
 In a separate terminal, navigate to the `part1/client` directory and run the following commands:
 
 ```
-~/developers-guide-to-ai/part1/client % npm install
-~/developers-guide-to-ai/part1/client % npm run dev
+~/ai-for-devs/part1/client % npm install
+~/ai-for-devs/part1/client % npm run dev
 ```
 
 Open your web browser and visit: http://localhost:5173

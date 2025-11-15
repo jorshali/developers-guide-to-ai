@@ -19,7 +19,7 @@ Install Python (if necessary):
 Navigate to the project (e.g. `part3/vector_databases`) directory in your terminal and run:
 
 ```
-~/developers-guide-to-ai/part3/vector_databases % python -m pip install -r requirements.txt
+~/ai-for-devs/part3/vector_databases % python -m pip install -r requirements.txt
 ```
 
 ## Run a Python Script
@@ -27,5 +27,5 @@ Navigate to the project (e.g. `part3/vector_databases`) directory in your termin
 In a terminal, navigate to the project directory (e.g. `part3/vector_databases`) and run the following command:
 
 ```
-~/developers-guide-to-ai/part3/vector_databases % python tokenization.py
+~/ai-for-devs/part3/vector_databases % python tokenization.py
 ```

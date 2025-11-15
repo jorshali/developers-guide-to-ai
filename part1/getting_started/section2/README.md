@@ -33,8 +33,8 @@ Install Node (if necessary):
 In a terminal, navigate to the `part1/getting_started/section2` directory and run the following commands:
 
 ```
-~/developers-guide-to-ai/part1/getting_started/section2 % npm install
-~/developers-guide-to-ai/part1/getting_started/section2 % node server.mjs
+~/ai-for-devs/part1/getting_started/section2 % npm install
+~/ai-for-devs/part1/getting_started/section2 % node server.mjs
 ```
 
 ## Start the Client
@@ -42,8 +42,8 @@ In a terminal, navigate to the `part1/getting_started/section2` directory and ru
 In a separate terminal, navigate to the `part1/client` directory and run the following commands:
 
 ```
-~/developers-guide-to-ai/part1/client % npm install
-~/developers-guide-to-ai/part1/client % npm run dev
+~/ai-for-devs/part1/client % npm install
+~/ai-for-devs/part1/client % npm run dev
 ```
 
 Open your web browser and visit: http://localhost:5173

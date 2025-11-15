@@ -100,7 +100,7 @@ _Note:_  All examples in this book were tested with Python 3.13.7.
 Verify the install in your terminal:
 
 ```
- ~/ai-for-devs % python --version
+~/ai-for-devs % python --version
 ```
 
 If the installation was successful, the version will print.
@@ -112,7 +112,7 @@ Python 3.13.7
 On a Mac or Linux, or if you are using a specific version of Python, you may need to substitute the `python` command with `python3`:
 
 ```
- ~/ai-for-devs % python3 --version
+~/ai-for-devs % python3 --version
 ```
 
 On Windows, you can also use the Python launcher:

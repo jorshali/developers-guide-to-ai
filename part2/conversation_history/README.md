@@ -19,7 +19,7 @@ Install Python (if necessary):
 Navigate to the project (e.g. `part2/conversation_history`) directory in your terminal and run:
 
 ```
-~/developers-guide-to-ai/part2/conversation_history % python -m pip install -r requirements.txt
+~/ai-for-devs/part2/conversation_history % python -m pip install -r requirements.txt
 ```
 
 ## Run a Python Script
@@ -27,7 +27,7 @@ Navigate to the project (e.g. `part2/conversation_history`) directory in your te
 In a terminal, navigate to the project directory (e.g. `part2/conversation_history`) and run the following command:
 
 ```
-~/developers-guide-to-ai/part2/conversation_history % python create_chat_request.py
+~/ai-for-devs/part2/conversation_history % python create_chat_request.py
 ```
 
 ## Start the Chatbot
@@ -39,7 +39,7 @@ Start a simple conversational chatbot to interact with your local Ollama server.
 In a terminal, navigate to the project directory (e.g. `part2/conversation_history`) and run the following command:
 
 ```
-~/developers-guide-to-ai/part2/conversation_history % fastapi dev main.py
+~/ai-for-devs/part2/conversation_history % fastapi dev main.py
 ```
 
 ### Start the Client
@@ -47,8 +47,8 @@ In a terminal, navigate to the project directory (e.g. `part2/conversation_histo
 In a separate terminal, navigate to the `part2/client` directory and run the following commands:
 
 ```
-~/developers-guide-to-ai/part1/client % npm install
-~/developers-guide-to-ai/part1/client % npm run dev
+~/ai-for-devs/part1/client % npm install
+~/ai-for-devs/part1/client % npm run dev
 ```
 
 Open your web browser and visit: http://localhost:5173

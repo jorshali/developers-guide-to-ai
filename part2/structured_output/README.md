@@ -19,7 +19,7 @@ Install Python (if necessary):
 Navigate to the project (e.g. `part2/structured_output`) directory in your terminal and run:
 
 ```
-~/developers-guide-to-ai/part2/structured_output % python -m pip install -r requirements.txt
+~/ai-for-devs/part2/structured_output % python -m pip install -r requirements.txt
 ```
 
 ## Run a Python Script
@@ -27,5 +27,5 @@ Navigate to the project (e.g. `part2/structured_output`) directory in your termi
 In a terminal, navigate to the project directory (e.g. `part2/structured_output`) and run the following command:
 
 ```
-~/developers-guide-to-ai/part2/structured_output % python sentiment_analysis_ollama_sdk.py
+~/ai-for-devs/part2/structured_output % python sentiment_analysis_ollama_sdk.py
 ```

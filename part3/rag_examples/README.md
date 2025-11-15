@@ -19,7 +19,7 @@ Install Python (if necessary):
 Navigate to the project (e.g. `part3/rag_examples`) directory in your terminal and run:
 
 ```
-~/developers-guide-to-ai/part3/rag_examples % python -m pip install -r requirements.txt
+~/ai-for-devs/part3/rag_examples % python -m pip install -r requirements.txt
 ```
 
 ## Run a Python Script
@@ -27,7 +27,7 @@ Navigate to the project (e.g. `part3/rag_examples`) directory in your terminal a
 In a terminal, navigate to the project directory (e.g. `part3/rag_examples`) and run the following command:
 
 ```
-~/developers-guide-to-ai/part3/rag_examples % python create_chat_request.py
+~/ai-for-devs/part3/rag_examples % python create_chat_request.py
 ```
 
 ## Start the Chatbot
@@ -39,7 +39,7 @@ Start the book example documentation chatbot to interact with your local Ollama 
 In a terminal, navigate to the project directory (e.g. `part3/rag_examples`) and run the following command:
 
 ```
-~/developers-guide-to-ai/part3/rag_examples % fastapi dev main.py
+~/ai-for-devs/part3/rag_examples % fastapi dev main.py
 ```
 
 ### Start the Client
@@ -47,8 +47,8 @@ In a terminal, navigate to the project directory (e.g. `part3/rag_examples`) and
 In a separate terminal, navigate to the `part3/client` directory and run the following commands:
 
 ```
-~/developers-guide-to-ai/part1/client % npm install
-~/developers-guide-to-ai/part1/client % npm run dev
+~/ai-for-devs/part1/client % npm install
+~/ai-for-devs/part1/client % npm run dev
 ```
 
 Open your web browser and visit: http://localhost:5173
