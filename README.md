@@ -22,13 +22,27 @@ If your issue results in a change to the book text, a change to the examples, or
 
 # Table of Contents
 
+- [The Developer's Guide to AI - From Prompts to Agents](#the-developers-guide-to-ai---from-prompts-to-agents)
+- [Table of Contents](#table-of-contents)
 - [About the Book](#about-the-book)
 - [Pre-trained AI Models](#pre-trained-ai-models)
-- [Prerequisites](#prerequisites)
 - [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+  - [Install Ollama](#install-ollama)
+  - [Install Python (if necessary)](#install-python-if-necessary)
+  - [Option 1: Install Python Globally](#option-1-install-python-globally)
+  - [Option 2: Install `pyenv` and `pyenv-virtualenv`](#option-2-install-pyenv-and-pyenv-virtualenv)
+    - [Install Python version 3.13.7](#install-python-version-3137)
+    - [Virtual Environment Setup](#virtual-environment-setup)
 - [Getting Started](#getting-started)
 - [Parts Overview](#parts-overview)
+  - [Part 1: Getting Started with AI](#part-1-getting-started-with-ai)
+  - [Part 2: Prompt Engineering](#part-2-prompt-engineering)
+  - [Part 3: Vector Databases and RAG (Retrieval-Augmented Generation)](#part-3-vector-databases-and-rag-retrieval-augmented-generation)
+  - [Part 4: Fine-tuning](#part-4-fine-tuning)
+  - [Part 5: Agents and MCP](#part-5-agents-and-mcp)
 - [Creating the README](#creating-the-readme)
+
 
 # About the Book
 
