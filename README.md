@@ -214,7 +214,7 @@ This part dives deeper into LLM capabilities with practical examples of prompt e
 | Project | Description |
 | --- | --- |
 | [part2/basic_examples/](part2/basic_examples/) | A collection of Python scripts demonstrating fundamental prompt engineering concepts. It includes examples of temperature settings, tokenization, prompt templates, and guard rails to control LLM behavior. |
-| [part3/client/](part3/client/) | A React-based chat interface that interacts with a RAG API. It supports conversational history and displays streaming responses from the backend. |
+| [part2/client/](part3/client/) | A React-based chat interface that interacts with a RAG API. It supports conversational history and displays streaming responses from the backend. |
 | [part2/conversation_history/](part2/conversation_history/) | A set of Python scripts that demonstrate conversation history concepts.  Includes a simple FastAPI server implementation for a simple conversational chatbot using the Ollama SDK. |
 | [part2/structured_output/](part2/structured_output/) | Python scripts that illustrate how to get structured data (JSON) from an LLM. It includes examples of sentiment analysis and data extraction using both the Ollama SDK and the `instructor` library. |
 | [part2/structured_output_javascript/](part2/basic_examples_javascript/) | A JavaScript example that illustrates how to get structured data (JSON) from an LLM by extracting contact information from an email. |
