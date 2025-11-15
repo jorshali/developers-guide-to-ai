@@ -1,6 +1,6 @@
 # The Developer's Guide to AI - From Prompts to Agents
 
-## Python Primer
+## Introduction
 
 Porting the Getting Started example to Python.
 
