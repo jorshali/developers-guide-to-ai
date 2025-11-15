@@ -26,3 +26,17 @@ experiments
 doc_chroma_db
 .vite
 .cursor
+
+# Python virtual environments
+venv/
+env/
+.venv/
+ENV/
+bin/
+lib/
+include/
+pyvenv.cfg
+.Python
+
+share
+*.arrow

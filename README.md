@@ -24,6 +24,8 @@ If your issue results in a change to the book text, a change to the examples, or
 
 # Table of Contents
 
+- [The Developer's Guide to AI - From Prompts to Agents](#the-developers-guide-to-ai---from-prompts-to-agents)
+- [Table of Contents](#table-of-contents)
 - [About the Book](#about-the-book)
 - [Pre-trained AI Models](#pre-trained-ai-models)
 - [Prerequisites](#prerequisites)
@@ -31,7 +33,15 @@ If your issue results in a change to the book text, a change to the examples, or
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
 - [Parts Overview](#parts-overview)
-- [Python Environments (Recommended)](#python-environments-recommended)
+  - [Part 1: Getting Started with AI](#part-1-getting-started-with-ai)
+  - [Part 2: Prompt Engineering](#part-2-prompt-engineering)
+  - [Part 3: Vector Databases and RAG](#part-3-vector-databases-and-rag)
+  - [Part 4: Fine-tuning](#part-4-fine-tuning)
+  - [Part 5: Agents](#part-5-agents)
+- [Python Environments \[Recommended\]](#python-environments-recommended)
+  - [Install `pyenv` and `pyenv-virtualenv`](#install-pyenv-and-pyenv-virtualenv)
+  - [Install Python version 3.12.11](#install-python-version-31211)
+  - [Virtual Environment Setup](#virtual-environment-setup)
 
 # About the Book
 
@@ -165,7 +175,7 @@ This part explores the concept of AI agents, which can use tools to interact wit
 | --- | --- |
 | [part5/01-helloAgents.py](part5/01-helloAgents.py) | A Python script that introduces the `smol-agents` library. It demonstrates how to create a simple agent with tools like web search and browsing to answer a question. |
 | [part5/02.findingEarningsReport.py](part5/02.findingEarningsReport.py) | This script showcases a more advanced agent that acts as a financial analyst. It uses tools to find and compare the quarterly revenues of different companies. |
-| [part5/mcp/](part5/mcp/) | A project that demonstrates the Multi-Agent Collaboration Protocol (MCP). It includes an Express.js server with some API endpoints and an MCP server that exposes these endpoints as tools for agents to use. It also contains an example of an expense tracker agent that interacts with a MongoDB database. |
+| [part5/mcp/](part5/mcp/) | A project that demonstrates the Model Context Protocol (MCP). It includes an Express.js server with some API endpoints and an MCP server that exposes these endpoints as tools for agents to use. It also contains an example of an expense tracker agent that interacts with a MongoDB database. |
 
 # Python Environments \[Recommended\]
 
