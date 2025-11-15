@@ -111,7 +111,7 @@ class ProductRecommender:
             'product_id': pid,
             'title': title,
             'category': category,
-            'price': str(price)
+            'price': price
         } for pid, title, category, price in zip(
             self.products_df['product_id'],
             self.products_df['title'],

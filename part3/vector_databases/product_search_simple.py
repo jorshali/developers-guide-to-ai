@@ -39,7 +39,7 @@ collection.add(
     'title': title,
     'category': category,
     'description': description,
-    'price': str(price)  # ChromaDB requires strings in metadata
+    'price': price,
   } for pid, title, category, description, price in zip(
     products_df['product_id'],
     products_df['title'],

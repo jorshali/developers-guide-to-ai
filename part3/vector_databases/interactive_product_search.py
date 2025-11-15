@@ -69,7 +69,7 @@ class ProductSearch:
             'product_id': pid,
             'title': title,
             'category': category,
-            'price': str(price)  # ChromaDB requires strings in metadata
+            'price': price
         } for pid, title, category, price in zip(
             self.products_df['product_id'],
             self.products_df['title'],
