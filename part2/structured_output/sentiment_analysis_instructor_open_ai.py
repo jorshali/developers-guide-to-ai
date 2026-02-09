@@ -1,3 +1,5 @@
+from openai import OpenAI
+from pydantic import BaseModel, Field
 import logging
 import os
 import json
@@ -11,7 +13,6 @@ load_dotenv()
 # Set logging to DEBUG
 logging.basicConfig(level=logging.DEBUG)
 
-from pydantic import BaseModel, Field
 
 class SocialMessage(BaseModel):
   """
@@ -27,16 +28,17 @@ The reply you write:
   reply: Optional[str] = Field(
     default=None, description="The recommend reply to a negative statement")
 
+
 # Get API key from environment
 api_key = os.getenv('OPENAI_API_KEY')
 
-from openai import OpenAI
 
 client = OpenAI(api_key=api_key)
 
+
 def analyze_sentiment(statement: str):
   response = client.responses.parse(
-    model="gpt-4o-mini",
+    model="gpt-4.1-mini",
     input=[
       {"role": "system", "content": """
 You are an online customer feedback expert.  Analyze the provided statement carefully 
@@ -51,7 +53,9 @@ and respond with the sentiment.  If the sentiment is negative, include a suggest
 
   return response.output_parsed
 
-response = analyze_sentiment("The App crashes every time I try to view my health improvement report!")
+
+response = analyze_sentiment(
+  "The App crashes every time I try to view my health improvement report!")
 
 print(f"Sentiment: {response.sentiment}")
 print(f"Reply: {response.reply}")

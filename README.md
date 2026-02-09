@@ -23,7 +23,7 @@ If your issue results in a change to the book text, a change to the examples, or
 # Table of Contents
 
 - [About the Book](#about-the-book)
-- [Pre-trained AI Models](#pre-trained-ai-models)
+- [Pretrained AI Models](#pretrained-ai-models)
 - [Prerequisites](#prerequisites)
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
@@ -34,7 +34,7 @@ If your issue results in a change to the book text, a change to the examples, or
 
 Most developers already know AI is powerful. What they don’t know is how to actually use it in their own codebase without becoming a data scientist. Too often, AI features stall out at brittle prototypes, half-baked search functions, or “smart” features that collapse the moment requirements change. That’s where this book comes in. We wrote this book with the everyday software developer in mind. The dev who works in a company and wants to grow their career by meeting the demands of the industry without losing time in the areas that might not be relevant to their current company or role.
 
-Written by seasoned developers Jacob Orshalick, Jerry M. Reghunadh, and Danny Thompson, this book teaches you how to integrate and customize large language models (LLMs) and other pre-trained AI models to solve real-world problems. 
+Written by seasoned developers Jacob Orshalick, Jerry M. Reghunadh, and Danny Thompson, this book teaches you how to integrate and customize large language models (LLMs) and other pretrained AI models to solve real-world problems. 
 
 Instead of drowning you in theory, this book gives you:
 
@@ -44,9 +44,9 @@ Instead of drowning you in theory, this book gives you:
 - Fewer dead-ends: Avoid wasted cycles by understanding limitations, costs, and trade-offs before you build.
 - Competitive edge: Discover how AI can help you improve search, personalization, automation, and more.
 
-We focus on practical applications using pre-trained AI models (LLMs and more) through accessible APIs and SDKs, allowing you to build AI-powered applications in the languages you already know.
+We focus on practical applications using pretrained AI models (LLMs and more) through accessible APIs and SDKs, allowing you to build AI-powered applications in the languages you already know.
 
-# Pre-trained AI Models
+# Pretrained AI Models
 
 The concepts and practical approaches presented in the Developer's Guide to AI are generally AI model agnostic, but we will be calling Ollama models in many of the examples.  Ollama provides a local API to open models that will only cost you the power required to power your laptop.  While some examples show how you can connect to hosted models (such as OpenAI APIs), keep in mind that to use these models you will need to register for an API key and pay for usage.
 
