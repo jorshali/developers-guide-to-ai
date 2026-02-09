@@ -22,13 +22,27 @@ If your issue results in a change to the book text, a change to the examples, or
 
 # Table of Contents
 
+- [The Developer's Guide to AI - From Prompts to Agents](#the-developers-guide-to-ai---from-prompts-to-agents)
+- [Table of Contents](#table-of-contents)
 - [About the Book](#about-the-book)
 - [Pretrained AI Models](#pretrained-ai-models)
-- [Prerequisites](#prerequisites)
 - [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+  - [Install Ollama](#install-ollama)
+  - [Install Python (if necessary)](#install-python-if-necessary)
+  - [Option 1: Install Python Globally](#option-1-install-python-globally)
+  - [Option 2: Install `pyenv` and `pyenv-virtualenv`](#option-2-install-pyenv-and-pyenv-virtualenv)
+    - [Install Python version 3.13.7](#install-python-version-3137)
+    - [Virtual Environment Setup](#virtual-environment-setup)
 - [Getting Started](#getting-started)
 - [Parts Overview](#parts-overview)
+  - [Part 1: Getting Started with AI](#part-1-getting-started-with-ai)
+  - [Part 2: Prompt Engineering](#part-2-prompt-engineering)
+  - [Part 3: Vector Databases and RAG (Retrieval-Augmented Generation)](#part-3-vector-databases-and-rag-retrieval-augmented-generation)
+  - [Part 4: Fine-tuning](#part-4-fine-tuning)
+  - [Part 5: Agents and MCP](#part-5-agents-and-mcp)
 - [Creating the README](#creating-the-readme)
+
 
 # About the Book
 
@@ -58,7 +72,7 @@ The project is organized into parts. Each part corresponds to a part with in boo
 - `part2/`: Prompt Engineering
 - `part3/`: Vector Databases and RAG (Retrieval-Augmented Generation)
 - `part4/`: Fine-tuning
-- `part5/`: Agents
+- `part5/`: Agents and MCP
 
 # Prerequisites
 
@@ -251,15 +265,14 @@ This part provides a comprehensive guide to fine-tuning models for specific task
 
 ---
 
-## Part 5: Agents
+## Part 5: Agents and MCP
 
-This part explores the concept of AI agents, which can use tools to interact with their environment and solve complex tasks.
+This part explores AI agents and the Model Context Protocol (MCP).
 
 | Project | Description |
 | --- | --- |
-| [part5/01-helloAgents.py](part5/01-helloAgents.py) | A Python script that introduces the `smol-agents` library. It demonstrates how to create a simple agent with tools like web search and browsing to answer a question. |
-| [part5/02.findingEarningsReport.py](part5/02.findingEarningsReport.py) | This script showcases a more advanced agent that acts as a financial analyst. It uses tools to find and compare the quarterly revenues of different companies. |
-| [part5/mcp/](part5/mcp/) | A project that demonstrates the Multi-Agent Collaboration Protocol (MCP). It includes an Express.js server with some API endpoints and an MCP server that exposes these endpoints as tools for agents to use. It also contains an example of an expense tracker agent that interacts with a MongoDB database. |
+| [part5/building-your-first-agent/](part5/building-your-first-agent/) | Examples for building your first agent, from a simple introduction to a more advanced financial analyst agent. |
+| [part5/building-an-mcp-server/](part5/building-an-mcp-server/) | Demonstrates building a Model Context Protocol (MCP) server with examples like an expense manager and a special calculator. |
 
 # Creating the README
 
