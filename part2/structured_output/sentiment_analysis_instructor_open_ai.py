@@ -1,8 +1,8 @@
-from openai import OpenAI
-from pydantic import BaseModel, Field
 import logging
 import os
-import json
+
+from openai import OpenAI
+from pydantic import BaseModel, Field
 
 from dotenv import load_dotenv
 from typing import Literal, Optional
@@ -10,8 +10,8 @@ from typing import Literal, Optional
 # Load environment variables from .env file
 load_dotenv()
 
-# Set logging to DEBUG
-logging.basicConfig(level=logging.DEBUG)
+# Set logging to DEBUG to see openai output
+# logging.basicConfig(level=logging.DEBUG)
 
 
 class SocialMessage(BaseModel):

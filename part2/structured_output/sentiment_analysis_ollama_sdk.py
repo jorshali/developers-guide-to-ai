@@ -4,18 +4,21 @@ from ollama import chat, ChatResponse
 
 from typing import Literal
 from pydantic import BaseModel
-from enum import Enum
 from pydantic import BaseModel, Field
 import json
 
-# Set logging to DEBUG
-logging.basicConfig(level=logging.DEBUG)
+# Set logging to DEBUG to see the ollama output
+# logging.basicConfig(level=logging.DEBUG)
+
 
 class SocialMessage(BaseModel):
   comment: str = Field(description="The comment being analyzed")
-  sentiment: Literal['positive', 'negative', 'neutral'] = Field(description="Provide the sentiment of the statement")
-  department: Literal['customer_support', 'online_ordering', 'product_quality', 'shipping_and_delivery', 'other_off_topic'] = Field(description="Department the statement should be routed to")
+  sentiment: Literal['positive', 'negative', 'neutral'] = Field(
+    description="Provide the sentiment of the statement")
+  department: Literal['customer_support', 'online_ordering', 'product_quality', 'shipping_and_delivery',
+                      'other_off_topic'] = Field(description="Department the statement should be routed to")
   reply: str = Field(description="Recommend a reply to the comment")
+
 
 def analyze_sentiment(statement: str) -> ChatResponse:
   return chat(
@@ -46,11 +49,14 @@ The reply your write:
     }
   )
 
+
 print(json.dumps(SocialMessage.model_json_schema(), indent=2))
 
-response = analyze_sentiment("Don't trust @Acme Corp.  It's been weeks and my order was never even shipped!")
+response = analyze_sentiment(
+  "Don't trust @AcmeCorp.  It's been weeks and my order was never even shipped!")
 
-social_message = SocialMessage.model_validate_json(response.message.content)
+social_message = SocialMessage.model_validate_json(
+  response.message.content)
 
 print(f"Sentiment: {social_message.sentiment}")
 print(f"Department: {social_message.department}")

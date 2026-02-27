@@ -1,14 +1,15 @@
-import logging
 import instructor
+import logging
 
 from typing import Literal
-from openai import OpenAI
 
 from pydantic import BaseModel
 from pydantic import BaseModel, Field
 
-# Set logging to DEBUG
-logging.basicConfig(level=logging.DEBUG)
+
+# Set logging to DEBUG if you want to see Instructor logs
+# logging.basicConfig(level=logging.DEBUG)
+
 
 class SocialMessage(BaseModel):
   """
@@ -26,21 +27,22 @@ The reply your write:
   - should include the number to customer service:  555-555-1245
 """
   statement: str = Field(description="The statement being analyzed")
-  sentiment: Literal['positive', 'negative', 'neutral'] = Field(description="Provide the sentiment of the statement")
-  department: Literal['customer_support', 'online_ordering', 'product_quality', 'shipping_and_delivery', 'other_off_topic'] = Field(description="Department the statement should be routed to")
+  sentiment: Literal['positive', 'negative', 'neutral'] = Field(
+    description="Provide the sentiment of the statement")
+  department: Literal['customer_support', 'online_ordering', 'product_quality', 'shipping_and_delivery',
+                      'other_off_topic'] = Field(description="Department the statement should be routed to")
   reply: str = Field(description="Recommend a reply to the statement")
 
-client = instructor.from_openai(
-  OpenAI(
-    base_url="http://localhost:11434/v1",
-    api_key="None"
-  ),
-  mode=instructor.Mode.TOOLS,
+
+client = instructor.from_provider(
+  "ollama/llama3.2",
+  base_url="http://localhost:11434/v1",
+  mode=instructor.Mode.JSON,
 )
+
 
 def analyze_sentiment(statement: str) -> SocialMessage:
   return client.chat.completions.create(
-    model="llama3.2",
     messages=[
       {"role": "system", "content": """
 You are an online customer feedback expert.  Analyze the provided statement carefully 
@@ -53,7 +55,9 @@ and respond with the sentiment, department, and reply.
     temperature=0
   )
 
-social_message = analyze_sentiment("Don't trust @Acme Corp.  It's been weeks and my order was never even shipped!")
+
+social_message = analyze_sentiment(
+  "Don't trust @AcmeCorp.  It's been weeks and my order was never even shipped!")
 
 print(f"Sentiment: {social_message.sentiment}")
 print(f"Department: {social_message.department}")

@@ -1,13 +1,12 @@
-import logging
 import instructor
+import logging
 
 from typing import Literal
-from openai import OpenAI
 
 from pydantic import BaseModel, Field, ConfigDict
 
-# Set logging to DEBUG
-logging.basicConfig(level=logging.DEBUG)
+# Set logging to DEBUG if you want to see Instructor logs
+# logging.basicConfig(level=logging.DEBUG)
 
 examples = [
   {
@@ -21,12 +20,6 @@ examples = [
     "sentiment": "negative",
     "department": "customer_support",
     "reply": "We apologize for the delay in shipping your order from Acme Corp. Our team is investigating this issue, and we will provide an update as soon as possible. If you have any further concerns, please call our customer service at 555-555-1245."
-  },
-  {
-    "statement": "I wouldn't trust @Acme Corp.",
-    "sentiment": "negative",
-    "department": "other_off_topic",
-    "reply": "We apologize for any concerns you may have about Acme Corp. We strive to provide accurate and reliable information, but sometimes mistakes can happen. Please feel free to contact our customer service team at 555-555-1245."
   },
   {
     "statement": "I'm an @Acme Corp repeat customer. They ship fast and prices are great.",
@@ -73,17 +66,15 @@ The reply your write:
   )
 
 
-client = instructor.from_openai(
-  OpenAI(
+client = instructor.from_provider(
+    "ollama/llama3",
     base_url="http://localhost:11434/v1",
-    api_key="None"
-  ),
-  mode=instructor.Mode.TOOLS,
+    mode=instructor.Mode.JSON,
 )
 
 
 def analyze_sentiment(statement: str) -> SocialMessage:
-  return client.chat.completions.create(
+  return client.create(
     model="llama3.2",
     messages=[
       {"role": "system", "content": """
@@ -99,7 +90,7 @@ and respond with the sentiment, department, and reply.
 
 
 social_message = analyze_sentiment(
-  "Don't trust @Acme Corp.  It's been weeks and my order was never even shipped!")
+  "Don't trust @AcmeCorp.  It's been weeks and my order was never even shipped!")
 
 print(f"Sentiment: {social_message.sentiment}")
 print(f"Department: {social_message.department}")

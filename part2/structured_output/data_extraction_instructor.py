@@ -1,35 +1,32 @@
-from openai import OpenAI
+import logging
+import json
+
 import instructor
+
 from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
-import json
-import logging
 
-# Set logging to DEBUG
-logging.basicConfig(level=logging.DEBUG)
+
+# Set logging to DEBUG if you want to see Instructor logs
+# logging.basicConfig(level=logging.DEBUG)
 
 
 class ContactInformation(BaseModel):
-  sender_name: Optional[str] = Field(
-    default=None, description="name of the email sender")
+  sender_name: Optional[str] = Field(default=None)
   location: Optional[str] = Field(
-    default=None, description="location of the email sender")
-  job_title: Optional[str] = Field(
-    default=None, description="job title for the email sender")
-  company: Optional[str] = Field(
-    default=None, description="company the email sender works for")
-  email: EmailStr | None = Field(
-    default=None, description="email address of the email sender")
-  phone_number: Optional[str] = Field(
-    default=None, description="phone number of the email sender")
+    default=None, description="location of the sender (e.g. Dallas, TX)")
+  job_title: Optional[str] = Field(default=None)
+  company: Optional[str] = Field(default=None)
+  email: EmailStr | None = Field(default=None)
+  phone_number: Optional[str] = Field(default=None)
 
 
 print(json.dumps(ContactInformation.model_json_schema(), indent=2))
 
-
-client = instructor.from_openai(
-  OpenAI(base_url="http://localhost:11434/v1", api_key="none"),
-  mode=instructor.Mode.TOOLS
+client = instructor.from_provider(
+    "ollama/llama3.2",
+    base_url="http://localhost:11434/v1",
+    mode=instructor.Mode.JSON,
 )
 
 system_message = "Given an <email> message, you will extract the sender's contact information."
@@ -37,7 +34,6 @@ system_message = "Given an <email> message, you will extract the sender's contac
 
 def extract_contact_information(email: str) -> ContactInformation:
   return client.chat.completions.create(
-    model="llama3.2",
     messages=[
       {"role": "system", "content": system_message},
       {"role": "user", "content": "<email>{{email}}</email>, JSON:"}
