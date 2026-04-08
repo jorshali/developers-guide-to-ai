@@ -1,8 +1,8 @@
-# The Developer's Guide to AI - From Prompts to Agents
+# The Developer's Guide to AI - A Field Guide for the Working Developer
 
-This repository contains the code for the book **The Developer's Guide to AI - From Prompts to Agents**.  You purchase the book from [no starch press](https://nostarch.com) here:
+This repository contains the code for the book **The Developer's Guide to AI - A Field Guide for the Working Developer**.  You purchase the book from [no starch press](https://nostarch.com) here:
 
-[The Developer's Guide to AI: From Prompts to Agent](https://nostarch.com/developers-guide-to-AI)
+[The Developer's Guide to AI: A Field Guide for the Working Developer](https://nostarch.com/developers-guide-to-AI)
 
 If you're using the examples and you notice an issue:
 
@@ -22,7 +22,6 @@ If your issue results in a change to the book text, a change to the examples, or
 
 # Table of Contents
 
-- [The Developer's Guide to AI - From Prompts to Agents](#the-developers-guide-to-ai---from-prompts-to-agents)
 - [Table of Contents](#table-of-contents)
 - [About the Book](#about-the-book)
 - [Pretrained AI Models](#pretrained-ai-models)
@@ -65,7 +64,7 @@ The concepts and practical approaches presented in the Developer's Guide to AI a
 
 # Project Structure
 
-The project is organized into parts. Each part corresponds to a part with in book **The Developer's Guide to AI - From Prompts to Agents**.
+The project is organized into parts. Each part corresponds to a part with in book **The Developer's Guide to AI - A Field Guide for the Working Developer**.
 
 - `part1/`: Getting started with AI
 - `part2/`: Prompt Engineering
@@ -246,7 +245,7 @@ This part focuses on building advanced AI applications using Retrieval-Augmented
 
 ---
 
-## Part 4: Fine-tuning
+## Part 4: Adapting Models to Real-World Tasks
 
 This part provides a comprehensive guide to fine-tuning models for specific tasks. It covers the entire lifecycle, from data preparation to model evaluation.
 
@@ -264,7 +263,7 @@ This part provides a comprehensive guide to fine-tuning models for specific task
 
 ---
 
-## Part 5: Agents and MCP
+## Part 5: Building Agentic Systems
 
 This part explores AI agents and the Model Context Protocol (MCP).
 

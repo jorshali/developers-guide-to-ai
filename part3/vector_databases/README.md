@@ -1,4 +1,4 @@
-# The Developer's Guide to AI - From Prompts to Agents
+# Part 3: Vector Databases and RAG (Retrieval-Augmented Generation)
 
 ## Introduction
 

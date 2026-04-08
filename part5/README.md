@@ -1,4 +1,4 @@
-# Part 5 : Agents and MCP
+# Part 5: Building Agentic Systems
 
 All the code and examples used in **Part 5: Agents** of the book are available here.
 

@@ -1,6 +1,6 @@
-# Part 4 : Fine-tuning
+# Part 4: Adapting Models to Real-World Tasks
 
-All the code and examples used in **Part 4: Fine-tuning** of the book are available here.
+All the code and examples used in **Part 4: Adapting Models to Real-World Tasks** of the book are available here.
 
 
 # Folders and Files

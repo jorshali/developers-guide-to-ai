@@ -1,4 +1,4 @@
-# The Developer's Guide to AI: From Prompts to Agents
+# Part 2: Prompt Engineering
 
 ## Getting Started Client
 
