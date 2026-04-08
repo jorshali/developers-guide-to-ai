@@ -43,7 +43,6 @@ If your issue results in a change to the book text, a change to the examples, or
   - [Part 5: Agents and MCP](#part-5-agents-and-mcp)
 - [Creating the README](#creating-the-readme)
 
-
 # About the Book
 
 Most developers already know AI is powerful. What they don’t know is how to actually use it in their own codebase without becoming a data scientist. Too often, AI features stall out at brittle prototypes, half-baked search functions, or “smart” features that collapse the moment requirements change. That’s where this book comes in. We wrote this book with the everyday software developer in mind. The dev who works in a company and wants to grow their career by meeting the demands of the industry without losing time in the areas that might not be relevant to their current company or role.
