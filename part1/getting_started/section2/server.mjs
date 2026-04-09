@@ -1,5 +1,5 @@
 import express from "express";
-import { ChatOllama } from "@langchain/ollama";
+import { Ollama } from "ollama";
 import cors from 'cors';
 
 const app = express();
@@ -7,19 +7,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const chatModel = new ChatOllama({
-  model: 'llama3.2'
-});
+const ollama = new Ollama();
 
 app.post('/', async (request, response) => {
   response.type('text/plain');
 
   const body = request.body;
 
-  const streamIterator = await chatModel.stream(body.question);
+  const streamIterator = await ollama.generate({
+    model: 'llama3.2',
+    prompt: body.question,
+    stream: true
+  });
 
   for await (const chunk of streamIterator) {
-    response.write(chunk.content);
+    response.write(chunk.response);
   }
 
   response.end();

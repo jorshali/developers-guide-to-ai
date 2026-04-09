@@ -1,9 +1,4 @@
-langchain==0.3.27
-langchain-community==0.3.31
-chromadb>=0.4.22
-requests>=2.31.0
-langchain-chroma==0.2.6
-langchain-ollama==0.3.10
-numpy<2
-pandas
-sentence-transformers>=5.1.0
+chromadb==1.2.1
+numpy==1.26.4
+pandas==2.3.3
+sentence-transformers==5.1.2

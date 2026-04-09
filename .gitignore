@@ -19,14 +19,6 @@ __pycache__
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-experiments
-doc_chroma_db
-.vite
-.cursor
-
 # Python virtual environments
 venv/
 env/
@@ -37,6 +29,14 @@ lib/
 include/
 pyvenv.cfg
 .Python
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+experiments
+doc_chroma_db
+.vite
+.cursor
 
 share
 *.arrow

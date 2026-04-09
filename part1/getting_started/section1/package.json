@@ -1,7 +1,7 @@
 {
   "name": "getting-started-section1",
   "version": "1.0.0",
-  "description": "A simple Node server that uses LangChain.js to call a local Ollama LLM",
+  "description": "A simple Node server that uses the Ollama SDK to call a local Ollama LLM",
   "author": "Jacob Orshalick",
   "type": "module",
   "main": "server.mjs",
@@ -14,14 +14,12 @@
     "node",
     "nodejs",
     "express",
-    "langchainjs",
     "ollama"
   ],
   "license": "ISC",
   "dependencies": {
-    "@langchain/ollama": "^1.0.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "langchain": "^1.0.1"
+    "ollama": "^0.6.2"
   }
 }

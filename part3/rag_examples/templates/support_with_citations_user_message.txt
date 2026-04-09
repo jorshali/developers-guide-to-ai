@@ -1,0 +1,11 @@
+<context>
+{% for document in documents %}
+<document>
+{{ document.content }}
+
+<source_url>{{ document.source_url }}</source_url>
+</document>
+{% endfor %}
+</context>
+
+Question: {{question}}

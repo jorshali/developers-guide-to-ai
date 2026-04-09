@@ -1,42 +1,28 @@
-from langchain_chroma.vectorstores import Chroma
-from langchain_ollama.embeddings import OllamaEmbeddings
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import TextLoader
+from pathlib import Path
 from ollama import chat
+from jinja2 import Environment, FileSystemLoader
+
+from common.document_vector_store import DocumentVectorStore
+
+env = Environment(
+  loader=FileSystemLoader(searchpath="templates")
+)
+
+system_message = env.get_template("basic_support_system_message.txt")
+user_message = env.get_template("basic_support_user_message.txt")
 
 print("\nLoading the README file, please wait just a moment...\n")
 
-documentation_as_documents = TextLoader('../../README.md').load()
+document_text = Path('../../README.md').read_text()
 
-print("Number of documents: ", len(documentation_as_documents))
-print(documentation_as_documents[0].model_dump_json(indent=2))
-
-splitter = RecursiveCharacterTextSplitter.from_language(
-  language="markdown", chunk_size=1200)
-
-# Initialize the document loader
-document_chunks = splitter.split_text(
-  documentation_as_documents[0].page_content)
-
-print("Number of chunks: ", len(document_chunks))
-
-# Initialize embeddings and vector store
-embeddings = OllamaEmbeddings(
-  model="mxbai-embed-large",
-  base_url="http://localhost:11434",
-)
-
-vector_db = Chroma.from_texts(
-  texts=document_chunks,
-  embedding=embeddings,
-  collection_name="documentation_collection"
-)
+readme_vector_store: DocumentVectorStore = DocumentVectorStore(
+  document_text)
 
 question = input("""Welcome to the Developer's Guide to AI Examples!
 ----------------------------------------------------------
-                 
+
 What would you like to know?  Ask me about setup, running, or troubleshooting.
-                 
+
 (Note:  I won't remember our conversation history, so please be specific.)
 
 \\bye to exit.
@@ -45,33 +31,33 @@ What would you like to know?  Ask me about setup, running, or troubleshooting.
 
 while question != "\\bye":
   if question:
-    results = vector_db.similarity_search_with_score(question, k=3)
-
-    text_snippets = [result[0].page_content for result in results]
+    documents = readme_vector_store.query(question)
 
     messages = [
       {
         "role": "system",
-        "content": "You are a helpful assistant and will answer questions about the Developer's Guide to AI.  Only use the provided context to answer.  If you don't know the answer, only respond with 'Sorry, I am unable to help with that, but I can answer questions about the documentation.'."
+        "content": system_message.render()
       },
-      {
+        {
         "role": "user",
-        "content": f"<context>{'\n'.join(text_snippets)}</context>\n\nQuestion: {question}"
+        "content": user_message.render(documents=documents, question=question)
       }
     ]
 
     response = chat(
       model="llama3.2",
       messages=messages,
-      stream=True
+      stream=True,
+      options={
+        "temperature": 0
+      }
     )
+
+    print()
 
     for chunk in response:
       if chunk.message.content:
         print(chunk.message.content, end="", flush=True)
 
-  else:
-    print("Sorry, you need to ask a question.")
-
-  question = input(
-    "\n\nWhat else would you like to know?\n\nUse \\bye to exit\n\nQuestion: ")
+    question = input(
+        "\n\nWhat else would you like to know?\n\nUse \\bye to exit\n\nQuestion: ")

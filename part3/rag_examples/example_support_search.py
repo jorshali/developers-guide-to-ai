@@ -1,72 +1,48 @@
-from langchain_chroma.vectorstores import Chroma
-from langchain_ollama.embeddings import OllamaEmbeddings
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import TextLoader
-from langchain.prompts import ChatPromptTemplate
-from langchain_ollama import OllamaLLM
-from langchain_core.runnables import RunnablePassthrough, RunnableLambda, RunnableMap
-from langchain_core.output_parsers import StrOutputParser
 
-print("\nLoading the README file, please wait just a moment...\n")
+from pathlib import Path
+from ollama import chat
+from jinja2 import Environment, FileSystemLoader
 
-documentation_as_documents = TextLoader('../../README.md').load()
+from common.document_vector_store import DocumentVectorStore
 
-print("Number of documents: ", len(documentation_as_documents))
-print(documentation_as_documents[0].model_dump_json(indent=2))
 
-splitter = RecursiveCharacterTextSplitter.from_language(
-  language="markdown", chunk_size=1200)
+document_text = Path('../../README.md').read_text()
 
-# Initialize the document loader
-document_chunks = splitter.split_text(
-  documentation_as_documents[0].page_content)
+readme_vector_store = DocumentVectorStore(document_text)
 
-print("Number of chunks: ", len(document_chunks))
+question = "Why is Ollama preferred to hosted APIs for the examples?"
 
-# Initialize embeddings and vector store
-embeddings = OllamaEmbeddings(
-  model="mxbai-embed-large",
-  base_url="http://localhost:11434",
+documents = readme_vector_store.query(question, n_results=1)
+
+env = Environment(
+  loader=FileSystemLoader(searchpath="templates")
 )
 
-vector_db = Chroma.from_texts(
-  texts=document_chunks,
-  embedding=embeddings,
-  collection_name="documentation_collection"
-)
-
-llm = OllamaLLM(
-  model="llama3.2",
-  base_url="http://localhost:11434"
-)
-
-question = "Do the examples use Ollama?"
+system_message = env.get_template("basic_support_system_message.txt")
+user_message = env.get_template("basic_support_user_message.txt")
 
 messages = [
-  ("system", "You are a helpful assistant and will answer questions about the Developer's Guide to AI.  Only use the provided documentation to answer.  If you don't know the answer, say so."),
-  ("human",
-   "<documentation>{documentation}</documentation>\n\nQuestion: {question}")
+  {
+    "role": "system",
+    "content": system_message.render()
+  },
+  {
+    "role": "user",
+    "content": user_message.render(documents=documents, question=question)
+  }
 ]
 
-prompt = ChatPromptTemplate.from_messages(messages)
-
-
-def retrieve_documentation(x):
-  return vector_db.similarity_search_with_score(question, k=3)
-
-
-context = RunnableMap({
-  "documentation": RunnableLambda(func=retrieve_documentation),
-  "question": RunnablePassthrough()
-})
-
-parser = StrOutputParser()
-
-chain = context | prompt | llm | parser
-
-response = chain.stream(question)
-
-print("\nProcessing...\n\n")
+response = chat(
+  model="llama3.2",
+  messages=messages,
+  stream=True,
+  options={
+    "temperature": 0
+  }
+)
 
 for chunk in response:
-  print(chunk, end="", flush=True)
+  if chunk.message.content:
+    print(chunk.message.content, end="", flush=True)
+
+print()

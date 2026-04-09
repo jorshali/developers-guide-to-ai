@@ -1,0 +1,43 @@
+import requests
+from pathlib import Path
+from abc import ABC, abstractmethod
+from common.document import Document
+
+
+class DocumentLoader(ABC):
+  @abstractmethod
+  def load_document(self) -> str:
+    ...
+
+
+class LocalFileDocumentLoader(DocumentLoader):
+  def __init__(self, full_file_path: str):
+    self.full_file_path = full_file_path
+
+  def load_document(self):
+    document_text = Path(self.full_file_path).read_text()
+
+    return Document(
+      source_url=f'file:///{self.full_file_path}',
+      content=document_text
+    )
+
+
+source_base_url = "https://github.com"
+raw_content_base_url = "https://raw.githubusercontent.com"
+
+
+def download_remote_document(owner="jorshali", repo="developers-guide-to-ai",
+                             branch="main", filename="README.md") -> Document:
+  source_url = f"{source_base_url}/{owner}/{repo}/blob/{branch}/{filename}"
+  raw_url = f"{raw_content_base_url}/{owner}/{repo}/{branch}/{filename}"
+
+  response = requests.get(raw_url)
+  response.raise_for_status()  # raises exception for 4xx/5xx errors
+
+  print(f"Downloaded file from {raw_url}")
+
+  return Document(
+    source_url=source_url,
+    content=response.text
+  )

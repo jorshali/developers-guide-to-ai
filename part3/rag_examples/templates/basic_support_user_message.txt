@@ -1,0 +1,9 @@
+<context>
+{% for document in documents %}
+<document>
+{{ document }}
+</document>
+{% endfor %}
+</context>
+
+Question: {{question}}

@@ -12,7 +12,7 @@ def count_tokens(text: str, model_name: str):
   print(f"Number of tokens: {len(tokens)}")
 
 
-model_name = "gpt-4o-mini"
-sample_text = "I'm having password issues, can you help me log in?"
+model_name = "gpt-5-mini"
+sample_text = "I'm having password issues. Can you help me log in?"
 
 count_tokens(sample_text, model_name)

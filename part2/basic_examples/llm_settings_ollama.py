@@ -2,6 +2,7 @@ from ollama import Client
 
 client = Client()
 
+
 def get_ollama_response(prompt):
   result = client.generate(
     model="llama3.2",
@@ -13,6 +14,7 @@ def get_ollama_response(prompt):
     }
   )
   return result.response
+
 
 prompt = """Tell me if the following statement is: positive, neutral, or negative.  Only respond with the sentiment.
 

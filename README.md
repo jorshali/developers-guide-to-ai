@@ -1,14 +1,12 @@
-# The Developer's Guide to AI - From Prompts to Agents
+# The Developer's Guide to AI - A Field Guide for the Working Developer
 
-This repository contains the code for the book **The Developer's Guide to AI - From Prompts to Agents**.  You pre-order the book or get early access here:
+This repository contains the code for the book **The Developer's Guide to AI - A Field Guide for the Working Developer**.  You purchase the book from [no starch press](https://nostarch.com) here:
 
-[The Developer's Guide to AI: From Prompts to Agent (EARLY ACCESS)](https://nostarch.com/developers-guide-to-AI)
+[The Developer's Guide to AI: A Field Guide for the Working Developer](https://nostarch.com/developers-guide-to-AI)
 
-If you're using the examples or reading the early access edition:
+If you're using the examples and you notice an issue:
 
-__Your name could be in the final version of the book!__
-
-The book is still in early access and we want your help!
+__Your name could be in the next edition of the book!__
 
 If you:
 
@@ -20,34 +18,35 @@ Please let us know!  Submit the issue here:
 
 [developers-guide-to-ai:issues](https://github.com/jorshali/developers-guide-to-ai/issues)
 
-If your issue results in a change to the book text, a change to the examples, or, even better, an accepted pull request, your name will be added to the Acknowledgements in the final version of the book!
+If your issue results in a change to the book text, a change to the examples, or, even better, an accepted pull request, your name will be added to the Acknowledgements in the next edition of the book. If you submit a pull request that is accepted, you'll even be a GitHub contributor to this project!
 
 # Table of Contents
 
-- [The Developer's Guide to AI - From Prompts to Agents](#the-developers-guide-to-ai---from-prompts-to-agents)
 - [Table of Contents](#table-of-contents)
 - [About the Book](#about-the-book)
-- [Pre-trained AI Models](#pre-trained-ai-models)
-- [Prerequisites](#prerequisites)
-- [About This README](#about-this-readme)
+- [Pretrained AI Models](#pretrained-ai-models)
 - [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+  - [Install Ollama](#install-ollama)
+  - [Install Python (if necessary)](#install-python-if-necessary)
+  - [Option 1: Install Python Globally](#option-1-install-python-globally)
+  - [Option 2: Install `pyenv` and `pyenv-virtualenv`](#option-2-install-pyenv-and-pyenv-virtualenv)
+    - [Install Python version 3.13.7](#install-python-version-3137)
+    - [Virtual Environment Setup](#virtual-environment-setup)
 - [Getting Started](#getting-started)
 - [Parts Overview](#parts-overview)
   - [Part 1: Getting Started with AI](#part-1-getting-started-with-ai)
   - [Part 2: Prompt Engineering](#part-2-prompt-engineering)
-  - [Part 3: Vector Databases and RAG](#part-3-vector-databases-and-rag)
+  - [Part 3: Vector Databases and RAG (Retrieval-Augmented Generation)](#part-3-vector-databases-and-rag-retrieval-augmented-generation)
   - [Part 4: Fine-tuning](#part-4-fine-tuning)
-  - [Part 5: Agents](#part-5-agents)
-- [Python Environments \[Recommended\]](#python-environments-recommended)
-  - [Install `pyenv` and `pyenv-virtualenv`](#install-pyenv-and-pyenv-virtualenv)
-  - [Install Python version 3.12.11](#install-python-version-31211)
-  - [Virtual Environment Setup](#virtual-environment-setup)
+  - [Part 5: Agents and MCP](#part-5-agents-and-mcp)
+- [Creating the README](#creating-the-readme)
 
 # About the Book
 
 Most developers already know AI is powerful. What they don’t know is how to actually use it in their own codebase without becoming a data scientist. Too often, AI features stall out at brittle prototypes, half-baked search functions, or “smart” features that collapse the moment requirements change. That’s where this book comes in. We wrote this book with the everyday software developer in mind. The dev who works in a company and wants to grow their career by meeting the demands of the industry without losing time in the areas that might not be relevant to their current company or role.
 
-Written by seasoned developers Jacob Orshalick, Jerry M. Reghunadh, and Danny Thompson, this book teaches you how to integrate and customize large language models (LLMs) and other pre-trained AI models to solve real-world problems. 
+Written by seasoned developers Jacob Orshalick, Jerry M. Reghunadh, and Danny Thompson, this book teaches you how to integrate and customize large language models (LLMs) and other pretrained AI models to solve real-world problems. 
 
 Instead of drowning you in theory, this book gives you:
 
@@ -57,37 +56,138 @@ Instead of drowning you in theory, this book gives you:
 - Fewer dead-ends: Avoid wasted cycles by understanding limitations, costs, and trade-offs before you build.
 - Competitive edge: Discover how AI can help you improve search, personalization, automation, and more.
 
-We focus on practical applications using pre-trained AI models (LLMs and more) through accessible APIs and SDKs, allowing you to build AI-powered applications in the languages you already know.
+We focus on practical applications using pretrained AI models (LLMs and more) through accessible APIs and SDKs, allowing you to build AI-powered applications in the languages you already know.
 
-# Pre-trained AI Models
+# Pretrained AI Models
 
-The concepts and practical approaches presented in the Developer's Guide to AI are generally AI model agnostic, but we will be calling Ollama models in many of the examples.  Ollama provides a local API to open models that will only cost you the power required to power your laptop.  While some examples show how you can connect to hosted models (e.g. OpenAI APIs), keep in mind that to use these models you will need to register for an API key and pay for usage.
+The concepts and practical approaches presented in the Developer's Guide to AI are generally AI model agnostic, but we will be calling Ollama models in many of the examples.  Ollama provides a local API to open models that will only cost you the power required to power your laptop.  While some examples show how you can connect to hosted models (such as OpenAI APIs), keep in mind that to use these models you will need to register for an API key and pay for usage.
+
+# Project Structure
+
+The project is organized into parts. Each part corresponds to a part with in book **The Developer's Guide to AI - A Field Guide for the Working Developer**.
+
+- `part1/`: Getting started with AI
+- `part2/`: Prompt Engineering
+- `part3/`: Vector Databases and RAG (Retrieval-Augmented Generation)
+- `part4/`: Fine-tuning
+- `part5/`: Agents and MCP
 
 # Prerequisites
 
-- Basic knowledge of JavaScript
-- [Node.js](https://nodejs.org/) (Version 24.8.0)
-- [Python](https://www.python.org/) (Version 3.12)
+The following prerequisites are necessary to get the examples up and running:
+
 - [Git](https://git-scm.com/)
+- [Ollama](#install-ollama)
+- [Node.js](https://nodejs.org/) (Version 24.8.0)
+- [Python](#install-python-if-necessary) (Version 3.13.7)
 
 Recommended:
 
 - [Homebrew (Mac)](https://brew.sh)
-- [Python Virtual Environment](#virtual-environment-setup)
 
-# About This README
+## Install Ollama
 
-The initial version of this README file was generated by the `gemini-cli` tool. The `instruction.md` file in this repository contains the set of instructions that were used to generate this file. The `gemini-cli` tool used these instructions to understand the project structure and generate the comprehensive overview of the project that you see here.
+Download and install: https://ollama.com
 
-# Project Structure
+Verify the install and start Llama in a terminal window:
 
-The project is organized into parts. Each part corresponds to a part with in book **The Developer's Guide to AI - From Prompts to Agents**.
+```
+~/ai-for-devs % ollama run llama3.2
+```
 
-- `part1/`: Getting started with AI
-- `part2/`: Prompt Engineering
-- `part3/`: Vector Databases and RAG
-- `part4/`: Fine-tuning
-- `part5/`: Agents
+## Install Python (if necessary)
+
+When installing Python, you have options. The simplest option is to install Python globally (option 1), but it's recommended that you setup a Python virtual environment for running the Python examples (option 2).
+
+Setting up a virtual environment is more involved, but will save you some headaches when you are installing different versions of Python and libraries for different projects. You can always start with option 1, and move on to option 2 as needed.
+
+## Option 1: Install Python Globally
+
+If you would rather install Python globally, follow the instructions here:
+
+Download and install: https://www.python.org/downloads/
+
+_Note:_  All examples in this book were tested with Python 3.13.7.
+
+Verify the install in your terminal:
+
+```
+~/ai-for-devs % python --version
+```
+
+If the installation was successful, the version will print.
+
+```
+Python 3.13.7
+```
+
+On a Mac or Linux, or if you are using a specific version of Python, you may need to substitute the `python` command with `python3`:
+
+```
+~/ai-for-devs % python3 --version
+```
+
+On Windows, you can also use the Python launcher:
+
+```
+C:\> py --version
+```
+
+Make sure you use the proper `python` command for your installation when running the examples throughout the book.
+
+## Option 2: Install `pyenv` and `pyenv-virtualenv`
+
+To set up an isolated environment for this project, you can use `pyenv` and `pyenv-virtualenv` to create a virtual environment for each part of the book. After setting up the virtual environment, you can install the required packages using `pip`.
+
+_Note:_  There are many tools for creating virtual environments in Python (such as `venv`, `conda`, and others). Feel free to choose your preferred option. Feel free to choose your own preferred option. The examples here use `pyenv` and `pyenv-virtualenv`.`
+
+Follow the instructions found here to setup `pyenv` for your environment:
+
+[Install pyenv](https://github.com/pyenv/pyenv?tab=readme-ov-file#installation)
+
+[Install pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv?tab=readme-ov-file#installation)
+
+### Install Python version 3.13.7
+
+The following command installs the necessary Python version using `pyenv`:
+
+```
+ ~/ai-for-devs % pyenv install 3.13.7
+```
+
+### Virtual Environment Setup
+
+Setup your virtual environment with the installed Python version:
+
+```
+~/ai-for-devs % pyenv virtualenv 3.13.7 developers-guide-to-ai-part1
+```
+
+Each part of the book has a specific set of dependencies for its examples defined in a `requirements.txt` file.  When you get to a new part, you can create a separate environment by running the command above and simply changing the `part` number.
+
+Now you need to activate your virtual environment:
+
+```
+~/ai-for-devs % pyenv activate developers-guide-to-ai-part1
+```
+
+Verify the Python version inside the environment:
+
+```
+~/ai-for-devs % python --version
+```
+
+You should see:
+
+```
+Python 3.13.7
+```
+
+Now that you've activated the virtual environment, you can navigate to the example directory and install the required packages using `pip`:
+
+```
+~/ai-for-devs % python -m pip install -r requirements.txt
+```
 
 # Getting Started
 
@@ -114,7 +214,7 @@ This part provides the foundation for working with AI, featuring both JavaScript
 | Project | Description |
 | --- | --- |
 | [part1/client/](part1/client/) | A React-based frontend application that consumes the LLM API. It demonstrates how to handle streaming responses from the server and manage UI states, providing a simple interface to ask questions and see the LLM's response in real-time. |
-| [part1/getting_started/](part1/getting_started/) | Contains two Express.js server implementations. `section1` provides a basic REST service that interfaces with a local LLM using LangChain. `section2` enhances this by implementing real-time streaming of LLM responses, showing how to create a more responsive user experience. |
+| [part1/getting_started/](part1/getting_started/) | Contains two Express.js server implementations. `section1` provides a basic REST service that interfaces with a local LLM using the Ollama SDK. `section2` enhances this by implementing real-time streaming of LLM responses, showing how to create a more responsive user experience. |
 | [part1/getting_started_python/](part1/getting_started_python/) | A FastAPI-based Python alternative to the JavaScript server. It showcases Python's asynchronous capabilities for LLM interactions, including streaming support, and demonstrates how to integrate with the same LLM backend using Python's ecosystem. |
 
 ---
@@ -126,30 +226,26 @@ This part dives deeper into LLM capabilities with practical examples of prompt e
 | Project | Description |
 | --- | --- |
 | [part2/basic_examples/](part2/basic_examples/) | A collection of Python scripts demonstrating fundamental prompt engineering concepts. It includes examples of temperature settings, tokenization, prompt templates, and guard rails to control LLM behavior. |
-| [part2/basic_examples_javascript/](part2/basic_examples_javascript/) | JavaScript examples covering chunking, creating embeddings, and tokenization. These scripts show how to perform common NLP tasks in a JavaScript environment. |
-| [part2/first_call_chain/](part2/first_call_chain/) | A simple FastAPI server that demonstrates how to create a basic LLM chain using LangChain. It shows how to combine a prompt template with an LLM to answer questions. |
+| [part2/client/](part3/client/) | A React-based chat interface that interacts with a RAG API. It supports conversational history and displays streaming responses from the backend. |
+| [part2/conversation_history/](part2/conversation_history/) | A set of Python scripts that demonstrate conversation history concepts.  Includes a simple FastAPI server implementation for a simple conversational chatbot using the Ollama SDK. |
 | [part2/structured_output/](part2/structured_output/) | Python scripts that illustrate how to get structured data (JSON) from an LLM. It includes examples of sentiment analysis and data extraction using both the Ollama SDK and the `instructor` library. |
+| [part2/structured_output_javascript/](part2/basic_examples_javascript/) | A JavaScript example that illustrates how to get structured data (JSON) from an LLM by extracting contact information from an email. |
 
 ---
 
-## Part 3: Vector Databases and RAG
+## Part 3: Vector Databases and RAG (Retrieval-Augmented Generation)
 
 This part focuses on building advanced AI applications using Retrieval-Augmented Generation (RAG) and vector databases.
 
 | Project | Description |
 | --- | --- |
-| [part3/advanced_rag/](part3/advanced_rag/) | An advanced RAG implementation that uses a combination of BM25 and vector search (ensemble retriever) along with multi-query retrieval to enhance search results. It also includes a reranker to improve the relevance of the retrieved documents. |
-| [part3/basic_examples/](part3/basic_examples/) | A Python script for experimenting with different text chunking strategies using LangChain's `RecursiveCharacterTextSplitter`. |
 | [part3/client/](part3/client/) | A React-based chat interface that interacts with a RAG API. It supports conversational history and displays streaming responses from the backend. |
-| [part3/conversational_rag_example/](part3/conversational_rag_example/) | A FastAPI server that implements a conversational RAG system. It uses a vector store to retrieve relevant documents and maintains conversation history to provide context-aware responses. |
-| [part3/parent_document_retriever_rag/](part3/parent_document_retriever_rag/) | A RAG implementation that uses the `ParentDocumentRetriever` to handle large documents. This approach splits documents into smaller chunks for embedding and retrieval, but returns the larger parent document for better context. |
-| [part3/rag_examples/](part3/rag_examples/) | A set of Python scripts that demonstrate different ways to build a RAG-based chatbot. It includes examples using both LangChain and the Ollama SDK. |
-| [part3/simple_rag_javascript/](part3/simple_rag_javascript/) | A Node.js server that implements a simple RAG system in JavaScript. It uses an in-memory vector store and the `ParentDocumentRetriever` to answer questions based on a set of articles. |
+| [part3/rag_examples/](part3/rag_examples/) | A set of Python scripts that demonstrate RAG concepts by experimenting with chunking strategies and building various versions of a simple chatbot grounded on the example documentation.  Also includes a FastAPI server for the chatbot that implements a conversational RAG (Retrieval-Augmented Generation) system. The examples combine the Ollama SDK with a vector store to retrieve relevant documents to provide context-aware responses. |
 | [part3/vector_databases/](part3/vector_databases/) | A collection of Python scripts that showcase various use cases for vector databases, including document search, product recommendation, and interactive product search with filtering. |
 
 ---
 
-## Part 4: Fine-tuning
+## Part 4: Adapting Models to Real-World Tasks
 
 This part provides a comprehensive guide to fine-tuning models for specific tasks. It covers the entire lifecycle, from data preparation to model evaluation.
 
@@ -167,56 +263,15 @@ This part provides a comprehensive guide to fine-tuning models for specific task
 
 ---
 
-## Part 5: Agents
+## Part 5: Building Agentic Systems
 
-This part explores the concept of AI agents, which can use tools to interact with their environment and solve complex tasks.
+This part explores AI agents and the Model Context Protocol (MCP).
 
 | Project | Description |
 | --- | --- |
-| [part5/01-helloAgents.py](part5/01-helloAgents.py) | A Python script that introduces the `smol-agents` library. It demonstrates how to create a simple agent with tools like web search and browsing to answer a question. |
-| [part5/02.findingEarningsReport.py](part5/02.findingEarningsReport.py) | This script showcases a more advanced agent that acts as a financial analyst. It uses tools to find and compare the quarterly revenues of different companies. |
-| [part5/mcp/](part5/mcp/) | A project that demonstrates the Model Context Protocol (MCP). It includes an Express.js server with some API endpoints and an MCP server that exposes these endpoints as tools for agents to use. It also contains an example of an expense tracker agent that interacts with a MongoDB database. |
+| [part5/building-your-first-agent/](part5/building-your-first-agent/) | Examples for building your first agent, from a simple introduction to a more advanced financial analyst agent. |
+| [part5/building-an-mcp-server/](part5/building-an-mcp-server/) | Demonstrates building a Model Context Protocol (MCP) server with examples like an expense manager and a special calculator. |
 
-# Python Environments \[Recommended\]
+# Creating the README
 
-It's recommended that you setup a Python virtual environment for running the Python examples.  To setup the environment, you can use `pyenv` and `pyenv-virtualenv` to create a virtual environment for each project. After setting up the virtual environment, you can install the required packages using `pip`.
-
-_Note:_  There are many tools for creating virtual environments in Python.  Feel free to choose your own preferred option.
-
-## Install `pyenv` and `pyenv-virtualenv`
-
-Follow the instructions found here to setup `pyenv` for your environment:
-
-[Install pyenv](https://github.com/pyenv/pyenv?tab=readme-ov-file#installation)
-
-[Install pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv?tab=readme-ov-file#installation)
-
-## Install Python version 3.12.11
-
-The following command installs the necessary Python version using `pyenv`:
-
-```
-pyenv install 3.12.11
-```
-
-## Virtual Environment Setup
-
-Setup your virtual environment with the installed Python version:
-
-```
-$ pyenv virtualenv 3.12.11 developers-guide-to-ai-part1
-```
-
-Each part of the book has a specific set of dependencies for its examples defined in a `requirements.txt` file.  When you get to a new part, you can create a specific environment by running the command above and simply changing the `part` number.
-
-Now you need to activate your virtual environment:
-
-```
-$ pyenv activate developers-guide-to-ai-part1
-```
-
-Now that you've activate the virtual environment, you can navigate to the example directory and install the required packages using `pip`:
-
-```
-pip install -r requirements.txt
-```
+The initial version of this README file was generated by the `gemini-cli` tool. The `instruction.md` file in this repository contains the set of instructions that were used to generate this file. The `gemini-cli` tool used these instructions to understand the project structure and generate the comprehensive overview of the project that you see here.

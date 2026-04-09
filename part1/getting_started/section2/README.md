@@ -1,6 +1,6 @@
-# The Developer's Guide to AI - From Prompts to Agents
+# Part 1: Getting Started with AI
 
-## Getting Started - Section 2: Stream your LLM Responses
+## Introduction
 
 The cool typing effect you see in ChatGPT makes it feel responsive.
 
@@ -12,70 +12,40 @@ When you prompt an LLM, it generates the response in chunks.  Streaming allows y
 
 Similar to an infinite scroll, streaming makes LLMs feel infinitely faster to your end users.
 
-With Express and LangChain it's extremely simple to stream an LLM response from your own REST API.  This tutorial shows you how.
+With Express and the Ollama SDK it's extremely simple to stream an LLM response from your own REST API.  This tutorial shows you how.
 
 You can access the entire source along with a working UI in the GitHub repository linked in the comments.
 
-## Quick Start
+## Prerequisites
 
 The following steps will get you up and running on your machine.
 
-0. Install Ollama and run:
+Install Ollama (if necessary):
 
-- Download and install: https://ollama.com
-- Verify the install and start Llama in a terminal window:
+- Follow the instructions in: [Install Ollama](https://github.com/jorshali/developers-guide-to-ai/blob/main/README.md#install-ollama)
 
-```
-~ % ollama run llama3.2
-```
-
-1. Clone this project into a local directory:
-
-```
-~ % git clone <url>
-```
-
-2. Install Node
+Install Node (if necessary):
 
 - Download and install: https://nodejs.org
-- Verify the install in your terminal:
+
+## Start the Server
+
+In a terminal, navigate to the `part1/getting_started/section2` directory and run the following commands:
 
 ```
-~ % node -v
+~/ai-for-devs/part1/getting_started/section2 % npm install
+~/ai-for-devs/part1/getting_started/section2 % node server.mjs
 ```
 
-- If the installation succeeded, the version will print
+## Start the Client
 
-3. Install node modules
-
-- Navigate to the project `part1/getting_started/section2` directory in your terminal and run:
+In a separate terminal, navigate to the `part1/client` directory and run the following commands:
 
 ```
-~/developers-guide-to-ai/part1/getting_started/section2 % npm install
+~/ai-for-devs/part1/client % npm install
+~/ai-for-devs/part1/client % npm run dev
 ```
 
-- Navigate to the project `part1/client` directory in your terminal and run:
+Open your web browser and visit: http://localhost:5173
 
-```
-~/developers-guide-to-ai/part1/client % npm install
-```
-
-4.  Launch the server
-
-- In a terminal, navigate to the `part1/getting_started/section2` directory and run the following command:
-
-```
-~/developers-guide-to-ai/part1/getting_started/section2 % node server.mjs
-```
-
-5.  Launch the client
-
-- In a separate terminal, navigate to the `part1/client` directory and run the following commands:
-
-```
-~/developers-guide-to-ai/part1/client % npm run dev
-```
-
-6. Open your web browser and visit: http://localhost:5173
-
-7. Input a question and click `Call your API` to see the response streamed from Llama 3.2 3b
+Input a question and click `Call your API` to see the response streamed from Llama 3.2.

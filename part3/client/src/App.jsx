@@ -41,7 +41,7 @@ function App() {
     if (!inputMessage.trim()) return;
 
     // Add user message to chat
-    const userMessage = { role: 'human', content: inputMessage };
+    const userMessage = { role: 'user', content: inputMessage };
     setMessages(prev => [...prev, userMessage]);
     setInputMessage('');
     setIsLoading(true);
@@ -74,10 +74,10 @@ function App() {
           setMessages(prev => {
             const newMessages = [...prev];
             const lastMessage = newMessages[newMessages.length - 1];
-            if (lastMessage && lastMessage.role === 'ai') {
+            if (lastMessage && lastMessage.role === 'assistant') {
               lastMessage.content = assistantMessage;
             } else {
-              newMessages.push({ role: 'ai', content: assistantMessage });
+              newMessages.push({ role: 'assistant', content: assistantMessage });
             }
             return newMessages;
           });
@@ -89,7 +89,7 @@ function App() {
       }
     } catch (error) {
       console.error('Error:', error);
-      setMessages(prev => [...prev, { role: 'ai', content: 'Sorry, there was an error processing your request.' }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, there was an error processing your request.' }]);
     } finally {
       setIsLoading(false);
     }
@@ -97,7 +97,8 @@ function App() {
 
   return (
     <div className="chat-container">
-      <h1>AI Support Agent</h1>
+      <h1>The Developer's Guide to AI</h1>
+      <h5>Examples Support Chatbot</h5>
       <div className="chat-box">
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.role}`}>
@@ -120,7 +121,7 @@ function App() {
           value={inputMessage}
           onChange={handleInputChange}
           onKeyPress={handleKeyPress}
-          placeholder="Type your message here..."
+          placeholder="You can ask me about the examples..."
           disabled={isLoading}
         />
         <button 

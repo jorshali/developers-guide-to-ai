@@ -24,7 +24,7 @@ const systemMessage = "Given an <email> message, you will extract the sender's c
 // Function to extract contact information from email
 async function extractContactInformation(email) {
   const response = await openai.chat.completions.create({
-    model: "gpt-4o",
+    model: "gpt-4.1-mini",
     messages: [
       { role: "system", content: systemMessage },
       { role: "user", content: `<email>${email}</email>\nJSON:` }
