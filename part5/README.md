@@ -15,6 +15,6 @@ Once you have set up the virtual environment and installed the required packages
 For example, to set up the virtual environment, you can use the following commands:
 
 ```bash
-pyenv virtualenv 3.12.0 developers-guide-to-ai-part5
+pyenv virtualenv 3.13.7 developers-guide-to-ai-part5
 pyenv activate developers-guide-to-ai-part5
 ```
