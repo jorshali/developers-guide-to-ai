@@ -22,6 +22,7 @@ If your issue results in a change to the book text, a change to the examples, or
 
 # Table of Contents
 
+- [The Developer's Guide to AI - A Field Guide for the Working Developer](#the-developers-guide-to-ai---a-field-guide-for-the-working-developer)
 - [Table of Contents](#table-of-contents)
 - [About the Book](#about-the-book)
 - [Pretrained AI Models](#pretrained-ai-models)
@@ -38,8 +39,8 @@ If your issue results in a change to the book text, a change to the examples, or
   - [Part 1: Getting Started with AI](#part-1-getting-started-with-ai)
   - [Part 2: Prompt Engineering](#part-2-prompt-engineering)
   - [Part 3: Vector Databases and RAG (Retrieval-Augmented Generation)](#part-3-vector-databases-and-rag-retrieval-augmented-generation)
-  - [Part 4: Fine-tuning](#part-4-fine-tuning)
-  - [Part 5: Agents and MCP](#part-5-agents-and-mcp)
+  - [Part 4: Adapting Models to Real-World Tasks](#part-4-adapting-models-to-real-world-tasks)
+  - [Part 5: Building Agentic Systems](#part-5-building-agentic-systems)
 - [Creating the README](#creating-the-readme)
 
 # About the Book
