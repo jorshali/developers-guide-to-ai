@@ -4,12 +4,16 @@
 
 This is the client for the Getting Started section.  Before starting the client, make sure you start one of the servers found in section2 and section3.  You can start the client with the following:
 
-1.  Launch the client
-
+1. Install dependencies
 - In a terminal, navigate to the `part1/client` directory and run the following commands:
+```
+~/ai-for-devs/part1/client % npm install
+```
 
+2.  Launch the client
+- Afterwards, run following command:
 ```
 ~/ai-for-devs/part1/client % npm run dev
 ```
 
-2. Open your web browser and visit: http://localhost:5173
+3. Open your web browser and visit: http://localhost:5173
