@@ -25,7 +25,6 @@ examples = [
     "statement": "I'm an @Acme Corp repeat customer. They ship fast and prices are great.",
     "sentiment": "positive",
     "department": "shipping_and_delivery",
-    "reply": "shipping_and_delivery",
     "reply": "Thank you for your kind words about Acme Corp!"
   },
   {
