@@ -6,10 +6,16 @@ This is the client for Part 2.  It provides a UI for interacting with the conver
 
 ## Start the client
 
-In a terminal, navigate to the `part2/client` directory and run the following commands:
+1. Install dependencies
+- In a terminal, navigate to the `part2/client` directory and run the following commands:
+```
+~/ai-for-devs/part2/client % npm install
+```
 
+2.  Launch the client
+- Afterwards, run following command:
 ```
 ~/ai-for-devs/part2/client % npm run dev
 ```
 
-Open your web browser and visit: http://localhost:5173
+3. Open your web browser and visit: http://localhost:5173
