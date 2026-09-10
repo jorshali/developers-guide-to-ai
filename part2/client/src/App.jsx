@@ -37,6 +37,33 @@ function App() {
     }
   };
 
+  const handleSummarize = async () => {
+    if (messages.length === 0) return;
+    
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('http://localhost:8000/summarize', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          history: messages
+        })
+      });
+
+      const summaryMessage = await response.json();
+
+      setMessages([summaryMessage]);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleSendMessage = async () => {
     if (!inputMessage.trim()) return;
 
@@ -129,6 +156,12 @@ function App() {
           disabled={isLoading || !inputMessage.trim()}
         >
           {isLoading ? 'Sending...' : 'Send'}
+        </button>
+        <button 
+          onClick={handleSummarize}
+          disabled={isLoading || messages.length === 0}
+        >
+          {isLoading ? 'Summarizing...' : 'Summarize'}
         </button>
       </div>
     </div>
