@@ -16,6 +16,9 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [isSummarizing, setIsSummarizing] = useState(false);
+
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -41,6 +44,7 @@ function App() {
     if (messages.length === 0) return;
     
     setIsLoading(true);
+    setIsSummarizing(true);
 
     try {
       const response = await fetch('http://localhost:8000/summarize', {
@@ -61,6 +65,7 @@ function App() {
       console.error('Error:', error);
     } finally {
       setIsLoading(false);
+      setIsSummarizing(false);
     }
   };
 
@@ -72,6 +77,7 @@ function App() {
     setMessages(prev => [...prev, userMessage]);
     setInputMessage('');
     setIsLoading(true);
+    setIsSending(true);
 
     const url = 'http://localhost:8000';
 
@@ -119,6 +125,7 @@ function App() {
       setMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, there was an error processing your request.' }]);
     } finally {
       setIsLoading(false);
+      setIsSending(false);
     }
   };
 
@@ -148,20 +155,22 @@ function App() {
           value={inputMessage}
           onChange={handleInputChange}
           onKeyPress={handleKeyPress}
-          placeholder="You can ask me about the examples..."
+          placeholder="You can ask me anything..."
           disabled={isLoading}
         />
         <button 
           onClick={handleSendMessage}
           disabled={isLoading || !inputMessage.trim()}
+          title='Send a question to the LLM.'
         >
-          {isLoading ? 'Sending...' : 'Send'}
+          {isSending ? 'Sending...' : 'Send'}
         </button>
         <button 
           onClick={handleSummarize}
           disabled={isLoading || messages.length === 0}
+          title='Summarize the conversation so far.'
         >
-          {isLoading ? 'Summarizing...' : 'Summarize'}
+          {isSummarizing ? 'Summarizing...' : 'Summarize'}
         </button>
       </div>
     </div>
